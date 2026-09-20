@@ -1337,8 +1337,8 @@ main{
 </div>
 </div></header>
 <main>
-<div class="toolbar"><select id="empresa"><option value="">Todas as empresas</option><option>AIVX</option><option>ELEMENTU</option><option>PROSEG</option></select><select id="criterioKm" title="Critério de medição em KM linear"><option value="considerar">KM linear — considerar rotatórias e dispositivos</option><option value="desconsiderar">KM linear — desconsiderar rotatórias e dispositivos</option></select><label style="font-size:11px;color:var(--muted)">Data do apontamento <input id="dataApontamento_v19_20260918" type="date" style="margin-left:6px;width:auto"></label>
-<label style="font-size:11px;color:var(--muted)">Postes executados no dia <input id="postesDia_v19_20260918" type="number" min="0" value="0" style="margin-left:6px;width:90px"></label></div>
+<div class="toolbar"><select id="empresa"><option value="">Todas as empresas</option><option>AIVX</option><option>ELEMENTU</option><option>PROSEG</option></select><select id="criterioKm" title="Critério de medição em KM linear"><option value="considerar">KM linear — considerar rotatórias e dispositivos</option><option value="desconsiderar">KM linear — desconsiderar rotatórias e dispositivos</option></select><label style="font-size:11px;color:var(--muted)">Data do apontamento <input id="dataApontamento" type="date" style="margin-left:6px;width:auto"></label>
+<label style="font-size:11px;color:var(--muted)">Postes executados no dia <input id="postesDia" type="number" min="0" value="0" style="margin-left:6px;width:90px"></label></div>
 <div class="kpis">
 <div class="kpi"><small>Ano 4 — postes e luminárias PQ</small><b id="a4p">—</b><span>quantitativo contratual cadastrado por item</span></div>
 <div class="kpi"><small>Prazo pactuado — contratadas</small><b id="prazoPact">—</b><span>até 30/09/2026</span></div>
@@ -1369,7 +1369,7 @@ main{
     </div>
     <div class="kmSettingItem">
       <label for="distSolar">Postes solares</label>
-      <div class="kmSettingInputWrap"><input id="distSolar" type="number" min="1" step="1" value="40"><span>metros</span></div>
+      <div class="kmSettingInputWrap"><input id="distSolar" type="number" min="1" step="1" value="30"><span>metros</span></div>
     </div>
   </div>
   <div class="kmRulePreview" id="kmRulePreview">Convencional: 50 m por par completo • Solar: 30 m por par completo</div>
@@ -1399,7 +1399,7 @@ const Y4={
   ELEMENTU:{p:654,l:618}
 };
 
-const P0=[["PROSEG","Postes convencionais",45,552,"Convencional"],["PROSEG","Luminárias convencionais",45,552,"Convencional"],["PROSEG","Postes solares",0,21,"Solar"],["PROSEG","Kits FONROCHE",0,21,"Solar"],["ELEMENTU","Postes convencionais",30,311,"Convencional"],["ELEMENTU","Luminárias convencionais",30,311,"Convencional"],["ELEMENTU","Postes solares",45,168,"Solar"],["ELEMENTU","Luminárias / Kits FONROCHE",45,168,"Solar"],["AIVX","Postes convencionais",23,336,"Convencional"],["AIVX","Luminárias convencionais",0,336,"Convencional"],["AIVX","Postes solares",0,127,"Solar"],["AIVX","Luminárias / Kits FONROCHE",0,127,"Solar"]];
+const P0=[["PROSEG","Postes convencionais",58,552,"Convencional"],["PROSEG","Luminárias convencionais",58,552,"Convencional"],["PROSEG","Postes solares",0,21,"Solar"],["PROSEG","Kits FONROCHE",0,21,"Solar"],["ELEMENTU","Postes convencionais",41,311,"Convencional"],["ELEMENTU","Luminárias convencionais",41,311,"Convencional"],["ELEMENTU","Postes solares",45,168,"Solar"],["ELEMENTU","Luminárias / Kits FONROCHE",45,168,"Solar"],["AIVX","Postes convencionais",63,336,"Convencional"],["AIVX","Luminárias convencionais",0,336,"Convencional"],["AIVX","Postes solares",0,127,"Solar"],["AIVX","Luminárias / Kits FONROCHE",0,127,"Solar"]];
 
 /*
 F = [empresa, SH, local, trecho, solução, status,
@@ -1410,7 +1410,7 @@ Logo:
   Fase 1 = soma dos registros cujo status é diferente de "Não liberado"
   Fase 2 = soma dos registros cujo status é "Não liberado"
 */
-const F0=[["PROSEG","SH 3–4","Figueirópolis/TO","Frente SH 3–4","Convencional","Liberado com condicionante",185,185,0,0,""],["PROSEG","SH 4","Alvorada/TO","Frente SH 4","Convencional","Liberado com condicionante",158,158,0,0,""],["PROSEG","SH 5–6","Talismã/TO","Frente SH 5–6","Convencional","Liberado com condicionante",209,209,45,45,"01 equipe (05 pessoas) • 01 caminhão munck • 01 carro de apoio"],["PROSEG","SH 6","Talismã/TO","Frente SH 6","Solar","Não liberado",21,21,0,0,""],["AIVX","SH14","Uruaçu/Camp./GO","km 176+000 ao 178+000 – Duplicação","Convencional","Liberado",54,54,0,0,"EPS / poda"],["AIVX","SH14","Uruaçu/Camp./GO","km 179+000 – Retorno X","Convencional","Liberado",24,24,0,0,"Confirmar EPS"],["AIVX","SH14","Uruaçu/Camp./GO","km 183+500 – Retorno X","Convencional","Liberado",24,24,0,0,"Confirmar EPS"],["AIVX","SH14","Uruaçu/Camp./GO","km 185+700 – Retorno U","Convencional","Liberado",13,13,0,0,"Confirmar EPS"],["AIVX","SH14","Uruaçu/Camp./GO","km 190+000 – Retorno X","Solar","Liberado",24,24,0,0,"Confirmar EPS"],["AIVX","SH14","Uruaçu/Camp./GO","km 195+000 – Retorno X","Solar","Liberado",24,24,0,0,"Confirmar EPS"],["AIVX","SH14","Uruaçu/Camp./GO","Marginal Norte km 197+700 ao 202+000","Convencional","Liberado",82,82,0,0,"Continuidade da obra"],["AIVX","SH14","Uruaçu/Camp./GO","Marginal Sul km 197+300 ao 202+000","Convencional","Liberado",90,90,23,0,"Continuidade da obra"],["AIVX","SH14","Uruaçu/Camp./GO","km 175+500 – Passagem Inferior","Convencional","Não liberado",15,15,0,0,"GEN"],["AIVX","SH14","Uruaçu/Camp./GO","km 175+100 ao 176+000 – Duplicação","Convencional","Não liberado",35,35,0,0,"GEN"],["AIVX","SH14","Uruaçu/Camp./GO","km 193+400 – Retorno X / Rotatória Alongada PRF","Convencional","Não liberado",28,28,0,0,"GEN"],["AIVX","SH14","Uruaçu/Camp./GO","km 197+500 ao 198+500 – Duplicação","Convencional","Não liberado",35,35,0,0,"GEN"],["ELEMENTU","SH20","Rianápolis/Rialma/GO","km 289+800 – Retorno X","Solar","Não liberado",24,24,0,0,"GEN / EPS"],["ELEMENTU","SH20","Rianápolis/Rialma/GO","km 293+100 – Retorno X","Solar","Não liberado",0,0,0,0,"GEN / EPS"],["ELEMENTU","SH20","Rianápolis/Rialma/GO","km 298+300 – Retorno X","Solar","Não liberado",0,0,0,0,"GEN / EPS"],["ELEMENTU","SH20","Rianápolis/Rialma/GO","km 299+500 ao 302+000 – Duplicação","Convencional","Não liberado",28,28,0,0,"GEN"],["ELEMENTU","SH20","Rianápolis/Rialma/GO","km 300+400 – Dispositivo Diamante","Convencional","Não liberado",28,28,0,0,"GEN"],["ELEMENTU","SH20","Rianápolis/Rialma/GO","km 300+500 ao 302+000 – Marginal Norte","Convencional","Não liberado",28,28,0,0,"GEN"],["ELEMENTU","SH20","Rianápolis/Rialma/GO","km 301+300 ao 302+000 – Marginal Sul","Convencional","Não liberado",28,28,0,0,"GEN"],["ELEMENTU","SH20","Rianápolis/Rialma/GO","km 301+600 – Dispositivo Diamante","Convencional","Não liberado",27,27,0,0,"GEN"],["ELEMENTU","SH20","Rianápolis/Rialma/GO","km 302+100 – Retorno U","Solar","Não liberado",0,0,0,0,"GEN / EPS"],["ELEMENTU","SH20","Rianápolis/Rialma/GO","km 303+700 – Retorno U","Solar","Não liberado",0,0,0,0,"GEN / EPS"],["ELEMENTU","SH21","Rianápolis/Rialma/GO","km 308+600 – Retorno X","Solar","Concluído parcialmente",24,24,15,15,"EPS"],["ELEMENTU","SH21","Rianápolis/Rialma/GO","km 314+500 – Retorno X","Solar","Concluído parcialmente",24,24,15,15,"EPS"],["ELEMENTU","SH21","Rianápolis/Rialma/GO","km 316+800 – Retorno X","Solar","Concluído parcialmente",24,24,15,15,"EPS"],["ELEMENTU","SH21","Rianápolis/Rialma/GO","km 317+100 ao 318+200 – Duplicação","Convencional","Concluído parcialmente",35,35,30,30,"Continuidade da obra"],["ELEMENTU","SH21","Rianápolis/Rialma/GO","km 317+400 ao 318+900 – Marginal Norte","Convencional","Concluído parcialmente",28,28,0,0,"Continuidade da obra"],["ELEMENTU","SH21","Rianápolis/Rialma/GO","km 318+300 ao 318+900 – Marginal Sul","Convencional","Concluído parcialmente",37,37,0,0,"Continuidade da obra"]];
+const F0=[["PROSEG","SH 3–4","Figueirópolis/TO","Frente SH 3–4","Convencional","Liberado com condicionante",185,185,0,0,""],["PROSEG","SH 4","Alvorada/TO","Frente SH 4","Convencional","Liberado com condicionante",158,158,0,0,""],["PROSEG","SH 5–6","Talismã/TO","Frente SH 5–6","Convencional","Liberado com condicionante",209,209,58,58,"01 equipe (05 pessoas) • 01 caminhão munck • 01 carro de apoio"],["PROSEG","SH 6","Talismã/TO","Frente SH 6","Solar","Não liberado",21,21,0,0,""],["AIVX","SH14","Uruaçu/Camp./GO","km 176+000 ao 178+000 – Duplicação","Convencional","Liberado",54,54,0,0,"EPS / poda"],["AIVX","SH14","Uruaçu/Camp./GO","km 179+000 – Retorno X","Convencional","Liberado",24,24,0,0,"Confirmar EPS"],["AIVX","SH14","Uruaçu/Camp./GO","km 183+500 – Retorno X","Convencional","Liberado",24,24,0,0,"Confirmar EPS"],["AIVX","SH14","Uruaçu/Camp./GO","km 185+700 – Retorno U","Convencional","Liberado",13,13,0,0,"Confirmar EPS"],["AIVX","SH14","Uruaçu/Camp./GO","km 190+000 – Retorno X","Solar","Liberado",24,24,0,0,"Confirmar EPS"],["AIVX","SH14","Uruaçu/Camp./GO","km 195+000 – Retorno X","Solar","Liberado",24,24,0,0,"Confirmar EPS"],["AIVX","SH14","Uruaçu/Camp./GO","Marginal Norte km 197+700 ao 202+000","Convencional","Liberado",82,82,0,0,"Continuidade da obra"],["AIVX","SH14","Uruaçu/Camp./GO","Marginal Sul km 197+300 ao 202+000","Convencional","Liberado",90,90,63,0,"Continuidade da obra"],["AIVX","SH14","Uruaçu/Camp./GO","km 175+500 – Passagem Inferior","Convencional","Não liberado",15,15,0,0,"GEN"],["AIVX","SH14","Uruaçu/Camp./GO","km 175+100 ao 176+000 – Duplicação","Convencional","Não liberado",35,35,0,0,"GEN"],["AIVX","SH14","Uruaçu/Camp./GO","km 193+400 – Retorno X / Rotatória Alongada PRF","Convencional","Não liberado",28,28,0,0,"GEN"],["AIVX","SH14","Uruaçu/Camp./GO","km 197+500 ao 198+500 – Duplicação","Convencional","Não liberado",35,35,0,0,"GEN"],["ELEMENTU","SH20","Rianápolis/Rialma/GO","km 289+800 – Retorno X","Solar","Não liberado",24,24,0,0,"GEN / EPS"],["ELEMENTU","SH20","Rianápolis/Rialma/GO","km 293+100 – Retorno X","Solar","Não liberado",0,0,0,0,"GEN / EPS"],["ELEMENTU","SH20","Rianápolis/Rialma/GO","km 298+300 – Retorno X","Solar","Não liberado",0,0,0,0,"GEN / EPS"],["ELEMENTU","SH20","Rianápolis/Rialma/GO","km 299+500 ao 302+000 – Duplicação","Convencional","Não liberado",28,28,0,0,"GEN"],["ELEMENTU","SH20","Rianápolis/Rialma/GO","km 300+400 – Dispositivo Diamante","Convencional","Não liberado",28,28,0,0,"GEN"],["ELEMENTU","SH20","Rianápolis/Rialma/GO","km 300+500 ao 302+000 – Marginal Norte","Convencional","Não liberado",28,28,0,0,"GEN"],["ELEMENTU","SH20","Rianápolis/Rialma/GO","km 301+300 ao 302+000 – Marginal Sul","Convencional","Não liberado",28,28,0,0,"GEN"],["ELEMENTU","SH20","Rianápolis/Rialma/GO","km 301+600 – Dispositivo Diamante","Convencional","Não liberado",27,27,0,0,"GEN"],["ELEMENTU","SH20","Rianápolis/Rialma/GO","km 302+100 – Retorno U","Solar","Não liberado",0,0,0,0,"GEN / EPS"],["ELEMENTU","SH20","Rianápolis/Rialma/GO","km 303+700 – Retorno U","Solar","Não liberado",0,0,0,0,"GEN / EPS"],["ELEMENTU","SH21","Rianápolis/Rialma/GO","km 308+600 – Retorno X","Solar","Concluído parcialmente",24,24,15,15,"EPS"],["ELEMENTU","SH21","Rianápolis/Rialma/GO","km 314+500 – Retorno X","Solar","Concluído parcialmente",24,24,15,15,"EPS"],["ELEMENTU","SH21","Rianápolis/Rialma/GO","km 316+800 – Retorno X","Solar","Concluído parcialmente",24,24,15,15,"EPS"],["ELEMENTU","SH21","Rianápolis/Rialma/GO","km 317+100 ao 318+200 – Duplicação","Convencional","Concluído parcialmente",35,35,35,35,"Continuidade da obra"],["ELEMENTU","SH21","Rianápolis/Rialma/GO","km 317+400 ao 318+900 – Marginal Norte","Convencional","Concluído parcialmente",28,28,6,6,"Continuidade da obra"],["ELEMENTU","SH21","Rianápolis/Rialma/GO","km 318+300 ao 318+900 – Marginal Sul","Convencional","Concluído parcialmente",37,37,0,0,"Continuidade da obra"]];
 
 const Y5=[
 ["L1","PROSEG","SH02","Cariri/TO","Convencional","Poste iluminação",198],["L1","PROSEG","SH02","Cariri/TO","Convencional","Poste iluminação duplo",5],["L1","PROSEG","SH02","Cariri/TO","Convencional","Luminária",203],["L1","PROSEG","SH02","Cariri/TO","Solar","Poste solar",127],["L1","PROSEG","SH02","Cariri/TO","Solar","Luminária solar",127],
@@ -1418,14 +1418,19 @@ const Y5=[
 ["L3","ELEMENTU","SH22","Rianápolis/GO","Convencional","Poste iluminação",67],["L3","ELEMENTU","SH22","Rianápolis/GO","Convencional","Poste iluminação duplo",0],["L3","ELEMENTU","SH22","Rianápolis/GO","Convencional","Luminária",67],["L3","ELEMENTU","SH22","Rianápolis/GO","Solar","Poste solar",23],["L3","ELEMENTU","SH22","Rianápolis/GO","Solar","Luminária solar",23]
 ];
 
-const KEY_F="gestao_ilum_f19_20260918";
-const KEY_P="gestao_ilum_p19_20260918";
-if(localStorage.getItem("criterioKmLinear_v19_20260918")===null) localStorage.setItem("criterioKmLinear_v19_20260918","considerar");
-if(localStorage.getItem("distanciaPosteConvencionalM_v19_20260918")===null) localStorage.setItem("distanciaPosteConvencionalM_v19_20260918","50");
-if(localStorage.getItem("distanciaPosteSolarM_v19_20260918")===null) localStorage.setItem("distanciaPosteSolarM_v19_20260918","40");
-if(localStorage.getItem("postesDia_v19_20260918")===null) localStorage.setItem("postesDia_v19_20260918","0");
-if(localStorage.getItem("dataApontamento_v19_20260918")===null) localStorage.setItem("dataApontamento_v19_20260918","");
-
+const KEY_F="gestao_ilum_f18";
+const KEY_P="gestao_ilum_p18";
+const MIGRACAO_BACKUP_20092026="gestao_ilum_backup_20260920_aplicado_v1";
+if(!localStorage.getItem(MIGRACAO_BACKUP_20092026)){
+  localStorage.setItem(KEY_F,JSON.stringify(F0));
+  localStorage.setItem(KEY_P,JSON.stringify(P0));
+  localStorage.setItem("dataApontamento","2026-09-19");
+  localStorage.setItem("postesDia","24");
+  localStorage.setItem("criterioKmLinear","considerar");
+  localStorage.setItem("distanciaPosteConvencionalM","50");
+  localStorage.setItem("distanciaPosteSolarM","40");
+  localStorage.setItem(MIGRACAO_BACKUP_20092026,"1");
+}
 let F=JSON.parse(localStorage.getItem(KEY_F)||"null")||JSON.parse(JSON.stringify(F0));
 let P=JSON.parse(localStorage.getItem(KEY_P)||"null")||JSON.parse(JSON.stringify(P0));
 
@@ -1495,8 +1500,8 @@ const fmtKm=n=>(+n||0).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFr
 function distanciaKm(solucao){
   const solar=String(solucao||"").toLowerCase()==="solar";
   const id=solar?"distSolar":"distConv";
-  const key=solar?"distanciaPosteSolarM_v19_20260918":"distanciaPosteConvencionalM_v19_20260918";
-  const padrao=solar?40:50;
+  const key=solar?"distanciaPosteSolarM":"distanciaPosteConvencionalM";
+  const padrao=solar?30:50;
   const el=$(id);
   const valor=Math.max(0,Number(el?el.value:localStorage.getItem(key))||padrao);
   return valor/1000;
@@ -1507,7 +1512,7 @@ function kmLinear(solucao,postes,luminarias){
 }
 function atualizarRegraKm(){
   const conv=Math.max(0,Number($("distConv")?.value)||50);
-  const solar=Math.max(0,Number($("distSolar")?.value)||40);
+  const solar=Math.max(0,Number($("distSolar")?.value)||30);
   const el=$("kmRulePreview");
   if(el) el.textContent=`Convencional: ${conv.toLocaleString("pt-BR")} m por par completo • Solar: ${solar.toLocaleString("pt-BR")} m por par completo`;
 }
@@ -1660,9 +1665,9 @@ function render(){
   $("prazoPact").textContent=dp>=0?dp+" dias":"Vencido";
   $("prazoContr").textContent=dc>=0?dc+" dias":"Vencido";
 
-  const pd=Number($("postesDia_v19_20260918").value)||0;
+  const pd=Number($("postesDia").value)||0;
   $("mediaPostes").textContent=fmt(pd)+" postes";
-  const dataTxt=$("dataApontamento_v19_20260918").value?new Date($("dataApontamento_v19_20260918").value+"T12:00:00").toLocaleDateString("pt-BR"):"hoje";
+  const dataTxt=$("dataApontamento").value?new Date($("dataApontamento").value+"T12:00:00").toLocaleDateString("pt-BR"):"hoje";
   $("mediaPostes").nextElementSibling.textContent=`executado em ${dataTxt} • acumulado: ${fmt(ex.p)} postes`;
 
   $("phaseCards").innerHTML=
@@ -1752,11 +1757,11 @@ function exportBackup(){
     exportadoEm:new Date().toISOString(),
     frentes:F,
     progresso:P,
-    dataApontamento:localStorage.getItem("dataApontamento_v19_20260918")||"",
-    postesDia:localStorage.getItem("postesDia_v19_20260918")||"0",
-    criterioKm:localStorage.getItem("criterioKmLinear_v19_20260918")||"considerar",
-    distanciaConvencionalM:localStorage.getItem("distanciaPosteConvencionalM_v19_20260918")||"50",
-    distanciaSolarM:localStorage.getItem("distanciaPosteSolarM_v19_20260918")||"40"
+    dataApontamento:localStorage.getItem("dataApontamento")||"",
+    postesDia:localStorage.getItem("postesDia")||"0",
+    criterioKm:localStorage.getItem("criterioKmLinear")||"considerar",
+    distanciaConvencionalM:localStorage.getItem("distanciaPosteConvencionalM")||"50",
+    distanciaSolarM:localStorage.getItem("distanciaPosteSolarM")||"40"
   };
   const blob=new Blob([JSON.stringify(backup,null,2)],{type:"application/json"});
   const url=URL.createObjectURL(blob);
@@ -1781,16 +1786,16 @@ function importBackup(file){
       P=b.progresso;
       localStorage.setItem(KEY_F,JSON.stringify(F));
       localStorage.setItem(KEY_P,JSON.stringify(P));
-      if(b.dataApontamento!==undefined) localStorage.setItem("dataApontamento_v19_20260918",b.dataApontamento);
-      if(b.postesDia!==undefined) localStorage.setItem("postesDia_v19_20260918",b.postesDia);
-      if(b.criterioKm!==undefined) localStorage.setItem("criterioKmLinear_v19_20260918",b.criterioKm);
-      if(b.distanciaConvencionalM!==undefined) localStorage.setItem("distanciaPosteConvencionalM_v19_20260918",b.distanciaConvencionalM);
-      if(b.distanciaSolarM!==undefined) localStorage.setItem("distanciaPosteSolarM_v19_20260918",b.distanciaSolarM);
-      if(typeof dataAp!=="undefined" && dataAp) dataAp.value=localStorage.getItem("dataApontamento_v19_20260918")||dataAp.value;
-      if(typeof postesDia!=="undefined" && postesDia) postesDia.value=localStorage.getItem("postesDia_v19_20260918")||"0";
-      if(typeof criterioKm!=="undefined" && criterioKm) criterioKm.value=localStorage.getItem("criterioKmLinear_v19_20260918")||"considerar";
-      if(typeof distConv!=="undefined" && distConv) distConv.value=localStorage.getItem("distanciaPosteConvencionalM_v19_20260918")||"50";
-      if(typeof distSolar!=="undefined" && distSolar) distSolar.value=localStorage.getItem("distanciaPosteSolarM_v19_20260918")||"40";
+      if(b.dataApontamento!==undefined) localStorage.setItem("dataApontamento",b.dataApontamento);
+      if(b.postesDia!==undefined) localStorage.setItem("postesDia",b.postesDia);
+      if(b.criterioKm!==undefined) localStorage.setItem("criterioKmLinear",b.criterioKm);
+      if(b.distanciaConvencionalM!==undefined) localStorage.setItem("distanciaPosteConvencionalM",b.distanciaConvencionalM);
+      if(b.distanciaSolarM!==undefined) localStorage.setItem("distanciaPosteSolarM",b.distanciaSolarM);
+      if(typeof dataAp!=="undefined" && dataAp) dataAp.value=localStorage.getItem("dataApontamento")||dataAp.value;
+      if(typeof postesDia!=="undefined" && postesDia) postesDia.value=localStorage.getItem("postesDia")||"0";
+      if(typeof criterioKm!=="undefined" && criterioKm) criterioKm.value=localStorage.getItem("criterioKmLinear")||"considerar";
+      if(typeof distConv!=="undefined" && distConv) distConv.value=localStorage.getItem("distanciaPosteConvencionalM")||"50";
+      if(typeof distSolar!=="undefined" && distSolar) distSolar.value=localStorage.getItem("distanciaPosteSolarM")||"40";
       render();
       alert("Backup importado com sucesso.");
     }catch(err){
@@ -1806,26 +1811,26 @@ function resetAll(){
     P=JSON.parse(JSON.stringify(P0));
     localStorage.setItem(KEY_F,JSON.stringify(F));
     localStorage.setItem(KEY_P,JSON.stringify(P));
-    localStorage.setItem("distanciaPosteConvencionalM_v19_20260918","50");
-    localStorage.setItem("distanciaPosteSolarM_v19_20260918","30");
+    localStorage.setItem("distanciaPosteConvencionalM","50");
+    localStorage.setItem("distanciaPosteSolarM","30");
     if(typeof distConv!=="undefined" && distConv) distConv.value="50";
     if(typeof distSolar!=="undefined" && distSolar) distSolar.value="40";
     render();
   }
 }
 $("empresa").addEventListener("change",render);
-const dataAp=$("dataApontamento_v19_20260918"), postesDia=$("postesDia_v19_20260918"), criterioKm=$("criterioKm"), distConv=$("distConv"), distSolar=$("distSolar");
+const dataAp=$("dataApontamento"), postesDia=$("postesDia"), criterioKm=$("criterioKm"), distConv=$("distConv"), distSolar=$("distSolar");
 const hoje=new Date(), hojeLocal=new Date(hoje.getTime()-hoje.getTimezoneOffset()*60000).toISOString().slice(0,10);
-dataAp.value=localStorage.getItem("dataApontamento_v19_20260918")||hojeLocal;
-postesDia.value=localStorage.getItem("postesDia_v19_20260918")||"0";
-criterioKm.value=localStorage.getItem("criterioKmLinear_v19_20260918")||"considerar";
-distConv.value=localStorage.getItem("distanciaPosteConvencionalM_v19_20260918")||"50";
-distSolar.value=localStorage.getItem("distanciaPosteSolarM_v19_20260918")||"40";
-dataAp.addEventListener("change",()=>{localStorage.setItem("dataApontamento_v19_20260918",dataAp.value);render()});
-postesDia.addEventListener("input",()=>{localStorage.setItem("postesDia_v19_20260918",postesDia.value);render()});
-criterioKm.addEventListener("change",()=>{localStorage.setItem("criterioKmLinear_v19_20260918",criterioKm.value);render()});
-distConv.addEventListener("input",()=>{localStorage.setItem("distanciaPosteConvencionalM_v19_20260918",distConv.value||"50");render()});
-distSolar.addEventListener("input",()=>{localStorage.setItem("distanciaPosteSolarM_v19_20260918",distSolar.value||"40");render()});
+dataAp.value=localStorage.getItem("dataApontamento")||hojeLocal;
+postesDia.value=localStorage.getItem("postesDia")||"0";
+criterioKm.value=localStorage.getItem("criterioKmLinear")||"considerar";
+distConv.value=localStorage.getItem("distanciaPosteConvencionalM")||"50";
+distSolar.value=localStorage.getItem("distanciaPosteSolarM")||"40";
+dataAp.addEventListener("change",()=>{localStorage.setItem("dataApontamento",dataAp.value);render()});
+postesDia.addEventListener("input",()=>{localStorage.setItem("postesDia",postesDia.value);render()});
+criterioKm.addEventListener("change",()=>{localStorage.setItem("criterioKmLinear",criterioKm.value);render()});
+distConv.addEventListener("input",()=>{localStorage.setItem("distanciaPosteConvencionalM",distConv.value||"50");render()});
+distSolar.addEventListener("input",()=>{localStorage.setItem("distanciaPosteSolarM",distSolar.value||"40");render()});
 render();
 // Regra KM linear: distâncias configuráveis em metros; somente pares completos.
 </script></body></html>
