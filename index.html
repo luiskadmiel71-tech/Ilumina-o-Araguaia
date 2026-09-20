@@ -1328,7 +1328,34 @@ main{
   .phaseMetricTitle{font-size:6.5px !important;margin-bottom:3px !important}
 }
 
-</style></head>
+</style>
+<style>
+/* V21 — previsto x liberação única por status */
+.releaseAuto{background:#eef3f0!important;color:#53685d!important;border-color:#dce6df!important;cursor:not-allowed}
+.releaseEdit{background:#fffaf0!important;border-color:#e3aa27!important;box-shadow:0 0 0 2px rgba(227,170,39,.12)!important;font-weight:700}
+#fronts td:nth-child(7){background:rgba(33,117,155,.025)}
+#fronts td:nth-child(8){background:rgba(102,214,10,.045)}
+
+.obsEdit{
+  width:180px;
+  min-width:180px;
+  min-height:58px;
+  resize:vertical;
+  border:1px solid #dce7de;
+  border-radius:10px;
+  background:#fff;
+  color:var(--ink);
+  padding:7px 8px;
+  font:inherit;
+  line-height:1.25;
+}
+.obsEdit:focus{
+  outline:none;
+  border-color:var(--eco-green);
+  box-shadow:0 0 0 3px rgba(102,214,10,.16);
+}
+</style>
+</head>
 <body>
 <header><div class="head"><div><div class="eyebrow">ECORODOVIAS • GESTÃO DE PROJETO</div><h1>Gestão da Implantação de Iluminação</h1><p>Fases dinâmicas • foco em postes e luminárias • Ano 4 + Ano 5</p></div>
 <div class="rightHeaderArea">
@@ -1353,8 +1380,8 @@ main{
 </div>
 
 <section class="panel" style="margin-bottom:14px"><h2>Liberação por local — altera automaticamente Fase 1 e Fase 2</h2>
-<div class="hint">Cada SH possui quantitativo próprio. <b>Não liberado = Fase 2</b>. Qualquer status liberado/em implantação = <b>Fase 1</b>. Os campos de execução por SH alimentam automaticamente a Fase 1 e o Avanço físico. Os quantitativos por frente podem ser ajustados nesta tabela.<br><b>Medição em KM linear:</b> considera somente pares completos (poste + luminária/Kit FONROCHE), sempre pelo menor quantitativo do par. As distâncias entre postes convencional e solar são configuráveis ao final da página. O critério selecionado no topo permite considerar ou desconsiderar rotatórias e dispositivos nos cálculos de KM.</div>
-<div class="scroll"><table><thead><tr><th>Empresa</th><th>SH</th><th>Local</th><th>Trecho</th><th>Solução</th><th>Status</th><th class="num">Postes liberados</th><th class="num">Luminárias liberadas</th><th class="num">Postes executados</th><th class="num">Luminárias executadas</th><th class="num">KM linear previsto</th><th class="num">KM linear executado</th><th>Avanço KM</th><th>Dependência</th></tr></thead><tbody id="fronts"></tbody></table></div></section>
+<div class="hint">Cada SH possui quantitativos <b>previstos em projeto</b> e um único quantitativo de <b>Postes / Luminárias liberados</b>. Nos status <b>Liberado</b> e <b>Concluído</b>, a liberação assume automaticamente 100% do previsto. Nos status <b>Em implantação</b>, <b>Liberado com condicionante</b> e <b>Concluído parcialmente</b>, a quantidade liberada fica editável manualmente. Em <b>Não liberado</b>, o valor liberado é zero. A <b>Fase 1</b> usa o quantitativo efetivamente liberado e a <b>Fase 2</b> usa o saldo previsto ainda não liberado.<br><b>Medição em KM linear:</b> considera somente pares completos (poste + luminária/Kit FONROCHE), sempre pelo menor quantitativo do par. As distâncias entre postes convencional e solar são configuráveis ao final da página. O critério selecionado no topo permite considerar ou desconsiderar rotatórias e dispositivos nos cálculos de KM.</div>
+<div class="scroll"><table><thead><tr><th>Empresa</th><th>SH</th><th>Local</th><th>Trecho</th><th>Solução</th><th>Status</th><th class="num">Postes / Luminárias<br>previstos em projeto</th><th class="num">Postes / Luminárias<br>liberados</th><th class="num">Postes executados</th><th class="num">Luminárias executadas</th><th class="num">KM linear previsto</th><th class="num">KM linear executado</th><th>Avanço KM</th><th>Observação</th></tr></thead><tbody id="fronts"></tbody></table></div></section>
 
 <section class="panel"><h2>Fase 3 — escopo completo do Ano 5</h2><div class="scroll"><table><thead><tr><th>Lote</th><th>Empresa</th><th>SH</th><th>Localidade</th><th>Solução</th><th>Item</th><th class="num">Qtd.</th></tr></thead><tbody id="year5"></tbody></table></div></section>
 
@@ -1369,10 +1396,10 @@ main{
     </div>
     <div class="kmSettingItem">
       <label for="distSolar">Postes solares</label>
-      <div class="kmSettingInputWrap"><input id="distSolar" type="number" min="1" step="1" value="30"><span>metros</span></div>
+      <div class="kmSettingInputWrap"><input id="distSolar" type="number" min="1" step="1" value="40"><span>metros</span></div>
     </div>
   </div>
-  <div class="kmRulePreview" id="kmRulePreview">Convencional: 50 m por par completo • Solar: 30 m por par completo</div>
+  <div class="kmRulePreview" id="kmRulePreview">Convencional: 50 m por par completo • Solar: 40 m por par completo</div>
 </section>
 
 <footer class="footerTools">
@@ -1418,61 +1445,91 @@ const Y5=[
 ["L3","ELEMENTU","SH22","Rianápolis/GO","Convencional","Poste iluminação",67],["L3","ELEMENTU","SH22","Rianápolis/GO","Convencional","Poste iluminação duplo",0],["L3","ELEMENTU","SH22","Rianápolis/GO","Convencional","Luminária",67],["L3","ELEMENTU","SH22","Rianápolis/GO","Solar","Poste solar",23],["L3","ELEMENTU","SH22","Rianápolis/GO","Solar","Luminária solar",23]
 ];
 
-const KEY_F="gestao_ilum_f18";
+const KEY_F="gestao_ilum_f23";
 const KEY_P="gestao_ilum_p18";
-const MIGRACAO_BACKUP_20092026="gestao_ilum_backup_20260920_aplicado_v1";
-if(!localStorage.getItem(MIGRACAO_BACKUP_20092026)){
-  localStorage.setItem(KEY_F,JSON.stringify(F0));
-  localStorage.setItem(KEY_P,JSON.stringify(P0));
-  localStorage.setItem("dataApontamento","2026-09-19");
-  localStorage.setItem("postesDia","24");
-  localStorage.setItem("criterioKmLinear","considerar");
-  localStorage.setItem("distanciaPosteConvencionalM","50");
-  localStorage.setItem("distanciaPosteSolarM","40");
-  localStorage.setItem(MIGRACAO_BACKUP_20092026,"1");
+const LEGACY_F_KEYS=[];
+
+/*
+Schema F v21:
+[empresa, SH, local, trecho, solução, status,
+ postes previstos, luminárias previstas,
+ postes/luminárias liberados,
+ postes executados, luminárias executadas, dependência]
+*/
+function statusAutomatico(s){ return s==="Liberado" || s==="Concluído"; }
+function statusEditavel(s){ return s==="Em implantação" || s==="Liberado com condicionante" || s==="Concluído parcialmente"; }
+function limiteLiberacao(r){ return Math.min(Math.max(0,+r[6]||0),Math.max(0,+r[7]||0)); }
+function normalizarLinha(r){
+  r[6]=Math.max(0,+r[6]||0);
+  r[7]=Math.max(0,+r[7]||0);
+  const lim=limiteLiberacao(r);
+  r[9]=Math.max(0,+r[9]||0);
+  r[10]=Math.max(0,+r[10]||0);
+  if(statusAutomatico(r[5])) r[8]=lim;
+  else if(r[5]==="Não liberado") r[8]=0;
+  else r[8]=Math.max(0,Math.min(lim,+r[8]||0));
+  // Não permite que o liberado fique abaixo do que já foi executado.
+  if(statusEditavel(r[5])) r[8]=Math.min(lim,Math.max(+r[8]||0,+r[9]||0,+r[10]||0));
+  r[9]=Math.min(+r[9]||0,+r[8]||0);
+  r[10]=Math.min(+r[10]||0,+r[8]||0);
+  r[11]=r[11]||"";
+  return r;
 }
-let F=JSON.parse(localStorage.getItem(KEY_F)||"null")||JSON.parse(JSON.stringify(F0));
+function migrarLinha(r){
+  if(!Array.isArray(r)) return r;
+  // v21 já consolidado.
+  if(r.length===12) return normalizarLinha(r.slice());
+  // v20 experimental: previsto P/L, liberado P/L, executado P/L, dependência.
+  if(r.length>=13){
+    const pp=+r[6]||0, pl=+r[7]||0, ep=+r[10]||0, el=+r[11]||0;
+    let lib;
+    if(statusAutomatico(r[5])) lib=Math.min(pp,pl);
+    else if(r[5]==="Não liberado") lib=0;
+    else {
+      const candidato=Math.min(+r[8]||0,+r[9]||0);
+      lib=candidato>0?candidato:Math.min(pp,pl);
+    }
+    return normalizarLinha([r[0],r[1],r[2],r[3],r[4],r[5],pp,pl,lib,ep,el,r[12]||""]);
+  }
+  // v18/v19: P/L do escopo, P/L executados, dependência.
+  const pp=+r[6]||0, pl=+r[7]||0, ep=+r[8]||0, el=+r[9]||0;
+  const lib=r[5]==="Não liberado"?0:Math.min(pp,pl);
+  return normalizarLinha([r[0],r[1],r[2],r[3],r[4],r[5],pp,pl,lib,ep,el,r[10]||""]);
+}
+
+let rawF=localStorage.getItem(KEY_F);
+const PRIMEIRA_CARGA_V23=!rawF;
+let F;
+try{ F=(rawF?JSON.parse(rawF):F0).map(migrarLinha); }
+catch(e){ F=F0.map(migrarLinha); }
 let P=JSON.parse(localStorage.getItem(KEY_P)||"null")||JSON.parse(JSON.stringify(P0));
 
+// Base oficial desta revisão:
+// - Convencional = 50 m por par completo
+// - Solar = 40 m por par completo
+// - Critério inicial = considerar rotatórias e dispositivos
+// A primeira carga da v23 parte limpa para preservar o previsto da Fase 1 em 51,75 km.
+if(PRIMEIRA_CARGA_V23){
+  localStorage.setItem("distanciaPosteConvencionalM","50");
+  localStorage.setItem("distanciaPosteSolarM","40");
+  localStorage.setItem("criterioKmLinear","considerar");
+}
+localStorage.setItem(KEY_F,JSON.stringify(F));
+
 // Padronização oficial das localidades por SH.
-// Atualiza também dados já salvos no navegador, sem alterar quantitativos, status ou executados.
 (function corrigirLocaisSH(){
   const localPorSH={
-    "SH3-4":"Figueirópolis/TO",
-    "SH4":"Alvorada/TO",
-    "SH5-6":"Talismã/TO",
-    "SH14":"Uruaçu/Camp./GO",
-    "SH20":"Rianápolis/Rialma/GO",
-    "SH21":"Rianápolis/Rialma/GO",
-    "SH20-21":"Rianápolis/Rialma/GO",
-    "SH2":"Cariri/TO",
-    "SH18-19":"Rialma/GO",
-    "SH22":"Rianápolis/GO",
-    "SH6":"Talismã/TO"
+    "SH3-4":"Figueirópolis/TO","SH4":"Alvorada/TO","SH5-6":"Talismã/TO",
+    "SH14":"Uruaçu/Camp./GO","SH20":"Rianápolis/Rialma/GO","SH21":"Rianápolis/Rialma/GO",
+    "SH20-21":"Rianápolis/Rialma/GO","SH2":"Cariri/TO","SH18-19":"Rialma/GO",
+    "SH22":"Rianápolis/GO","SH6":"Talismã/TO"
   };
   const normSH=v=>String(v||"").toUpperCase().replace(/\s+/g,"").replace(/[–—]/g,"-").replace(/^SH0+/,"SH");
-  let alterou=false;
-  F.forEach(r=>{
-    const sh=normSH(r[1]);
-    if(localPorSH[sh] && r[2]!==localPorSH[sh]){ r[2]=localPorSH[sh]; alterou=true; }
-  });
-  if(alterou) localStorage.setItem(KEY_F,JSON.stringify(F));
-})();
-
-// Regra de previsto: postes e luminárias trabalham em pares 1:1.
-// A luminária prevista é a referência; os postes previstos são igualados automaticamente.
-(function equalizarPrevistosAno4(){
-  F.forEach(r=>{
-    const previsto=Math.max(0,+r[7]||0);
-    r[6]=previsto;
-    if((+r[8]||0)>previsto) r[8]=previsto;
-    if((+r[9]||0)>previsto) r[9]=previsto;
-  });
+  F.forEach(r=>{ const sh=normSH(r[1]); if(localPorSH[sh]) r[2]=localPorSH[sh]; });
   localStorage.setItem(KEY_F,JSON.stringify(F));
 })();
 
-// Mantém na PROSEG somente os quatro indicadores executivos solicitados,
-// inclusive quando existirem dados antigos salvos no navegador.
+// Mantém na PROSEG os indicadores executivos já existentes.
 (function normalizeProsegProgress(){
   const antigos=P.filter(r=>r[0]==="PROSEG");
   const find=(...nomes)=>antigos.find(r=>nomes.includes(r[1]));
@@ -1492,16 +1549,18 @@ let P=JSON.parse(localStorage.getItem(KEY_P)||"null")||JSON.parse(JSON.stringify
   P=[...proseg,...P.filter(r=>r[0]!=="PROSEG")];
   localStorage.setItem(KEY_P,JSON.stringify(P));
 })();
-
 const $=x=>document.getElementById(x);
 const fmt=n=>Math.round(+n||0).toLocaleString("pt-BR");
 const pct=(a,b)=>b?Math.min(100,100*(+a||0)/(+b||0)):0;
 const fmtKm=n=>(+n||0).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
+function escHtml(v){
+  return String(v??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'\"':"&quot;","'":"&#39;"}[ch]));
+}
 function distanciaKm(solucao){
   const solar=String(solucao||"").toLowerCase()==="solar";
   const id=solar?"distSolar":"distConv";
   const key=solar?"distanciaPosteSolarM":"distanciaPosteConvencionalM";
-  const padrao=solar?30:50;
+  const padrao=solar?40:50;
   const el=$(id);
   const valor=Math.max(0,Number(el?el.value:localStorage.getItem(key))||padrao);
   return valor/1000;
@@ -1512,7 +1571,7 @@ function kmLinear(solucao,postes,luminarias){
 }
 function atualizarRegraKm(){
   const conv=Math.max(0,Number($("distConv")?.value)||50);
-  const solar=Math.max(0,Number($("distSolar")?.value)||30);
+  const solar=Math.max(0,Number($("distSolar")?.value)||40);
   const el=$("kmRulePreview");
   if(el) el.textContent=`Convencional: ${conv.toLocaleString("pt-BR")} m por par completo • Solar: ${solar.toLocaleString("pt-BR")} m por par completo`;
 }
@@ -1545,7 +1604,7 @@ function kmLinearLinha(r,postes,luminarias){
 function kmTotals(rows){
   const a=Array.isArray(rows)?rows:[];
   const previsto=a.reduce((s,r)=>s+kmLinearLinha(r,r[6],r[7]),0);
-  const executado=a.reduce((s,r)=>s+kmLinearLinha(r,r[8],r[9]),0);
+  const executado=a.reduce((s,r)=>s+kmLinearLinha(r,r[9],r[10]),0);
   return {previsto,executado,saldo:Math.max(0,previsto-executado),percentual:pct(executado,previsto)};
 }
 function kmOverallCard(km){
@@ -1555,7 +1614,7 @@ function kmOverallCard(km){
 }
 function phase1KmCard(p,l,ep,el,km){
   const denom=p+l, num=ep+el, per=pct(num,denom);
-  return `<div class="phaseCard phase1KmCard"><div class=phaseHead><div><h2>Fase 1</h2><p>Tudo do Ano 4 com status liberado/em implantação</p></div><span class=tag>ANO 4</span></div>
+  return `<div class="phaseCard phase1KmCard"><div class=phaseHead><div><h2>Fase 1</h2><p>Escopo do Ano 4 efetivamente liberado para implantação</p></div><span class=tag>ANO 4</span></div>
     <div class=phase1Dual>
       <div class=phaseMetricBlock><div class=phaseMetricTitle>Quantitativo físico</div><div class=donutRow><div class=donut style="--p:${per};--c:var(--green)"><div class=donutText><b>${per.toFixed(1)}%</b><small>EXECUTADO / LIBERADO</small></div></div><div class=metrics><div class=m><span>Postes</span><b>${fmt(ep)} / ${fmt(p)}</b></div><div class=m><span>Luminárias</span><b>${fmt(el)} / ${fmt(l)}</b></div><div class=m><span>Total visual</span><b>${fmt(num)} / ${fmt(denom)}</b></div></div></div></div>
       <div class=phaseMetricBlock><div class=phaseMetricTitle>KM linear</div><div class=donutRow><div class=donut style="--p:${km.percentual};--c:var(--eco-green)"><div class=donutText><b>${km.percentual.toFixed(1)}%</b><small>KM EXECUTADO</small></div></div><div class=metrics><div class=m><span>Previsto</span><b class=kmValue>${fmtKm(km.previsto)} km</b></div><div class=m><span>Executado</span><b class=kmValue>${fmtKm(km.executado)} km</b></div><div class=m><span>Saldo</span><b class=kmValue>${fmtKm(km.saldo)} km</b></div></div></div></div>
@@ -1572,17 +1631,21 @@ function rowsFiltered(){
   return F.filter(r=>!e||r[0]===e);
 }
 function frontTotals(released){
-  const a=rowsFiltered().filter(r=>released?isReleased(r[5]):!isReleased(r[5]));
+  const a=rowsFiltered();
+  if(released){
+    const q=a.reduce((s,r)=>s+(+r[8]||0),0);
+    return {p:q,l:q};
+  }
   return {
-    p:a.reduce((s,r)=>s+(+r[6]||0),0),
-    l:a.reduce((s,r)=>s+(+r[7]||0),0)
+    p:a.reduce((s,r)=>s+Math.max(0,(+r[6]||0)-(+r[8]||0)),0),
+    l:a.reduce((s,r)=>s+Math.max(0,(+r[7]||0)-(+r[8]||0)),0)
   };
 }
 function executed(){
-  const a=rowsFiltered().filter(r=>isReleased(r[5]));
+  const a=rowsFiltered();
   return {
-    p:a.reduce((s,r)=>s+(+r[8]||0),0),
-    l:a.reduce((s,r)=>s+(+r[9]||0),0)
+    p:a.reduce((s,r)=>s+(+r[9]||0),0),
+    l:a.reduce((s,r)=>s+(+r[10]||0),0)
   };
 }
 function year4(){
@@ -1595,12 +1658,18 @@ function year4(){
     l:a.reduce((s,r)=>s+(+r[7]||0),0)
   };
 }
+function isPosteY5(item){
+  return /^Poste\b/i.test(String(item||"").trim());
+}
+function isLuminariaY5(item){
+  return /^Lumin[áa]ria\b/i.test(String(item||"").trim());
+}
 function y5tot(){
   const e=selected();
   const a=Y5.filter(r=>!e||r[1]===e);
   return {
-    p:a.filter(r=>/Poste/i.test(r[5])).reduce((s,r)=>s+r[6],0),
-    l:a.filter(r=>/Lumin/i.test(r[5])).reduce((s,r)=>s+r[6],0)
+    p:a.filter(r=>isPosteY5(r[5])).reduce((s,r)=>s+(+r[6]||0),0),
+    l:a.filter(r=>isLuminariaY5(r[5])).reduce((s,r)=>s+(+r[6]||0),0)
   };
 }
 function y5KmPrevisto(){
@@ -1613,24 +1682,27 @@ function y5KmPrevisto(){
     const chave=[r[0],r[1],r[2],r[3],r[4]].join("|");
     if(!grupos.has(chave)) grupos.set(chave,{solucao:r[4],postes:0,luminarias:0});
     const g=grupos.get(chave);
-    if(/Poste/i.test(r[5])) g.postes+=(+r[6]||0);
-    if(/Lumin/i.test(r[5])) g.luminarias+=(+r[6]||0);
+    if(isPosteY5(r[5])) g.postes+=(+r[6]||0);
+    if(isLuminariaY5(r[5])) g.luminarias+=(+r[6]||0);
   });
   let previsto=0;
   grupos.forEach(g=>{ previsto+=kmLinear(g.solucao,g.postes,g.luminarias); });
   return previsto;
 }
 function execBy(emp,sol,kind){
-  return F.filter(r=>r[0]===emp && isReleased(r[5]) && (!sol||r[4]===sol))
-          .reduce((s,r)=>s+(+r[kind==="p"?8:9]||0),0);
+  return F.filter(r=>r[0]===emp && (!sol||r[4]===sol))
+          .reduce((s,r)=>s+(+r[kind==="p"?9:10]||0),0);
+}
+function liberadoBy(emp,sol){
+  return F.filter(r=>r[0]===emp && (!sol||r[4]===sol)).reduce((s,r)=>s+(+r[8]||0),0);
 }
 function syncProgress(){
   P.forEach(r=>{
     const [emp,item]=r;
-    if(item==="Postes convencionais") r[2]=execBy(emp,"Convencional","p");
-    if(item==="Luminárias convencionais") r[2]=execBy(emp,"Convencional","l");
-    if(item==="Postes solares") r[2]=execBy(emp,"Solar","p");
-    if(item==="Kits FONROCHE" || /Luminárias \/ Kits FONROCHE/.test(item)) r[2]=execBy(emp,"Solar","l");
+    if(item==="Postes convencionais"){ r[2]=execBy(emp,"Convencional","p"); r[3]=liberadoBy(emp,"Convencional"); }
+    if(item==="Luminárias convencionais"){ r[2]=execBy(emp,"Convencional","l"); r[3]=liberadoBy(emp,"Convencional"); }
+    if(item==="Postes solares"){ r[2]=execBy(emp,"Solar","p"); r[3]=liberadoBy(emp,"Solar"); }
+    if(item==="Kits FONROCHE" || /Luminárias \/ Kits FONROCHE/.test(item)){ r[2]=execBy(emp,"Solar","l"); r[3]=liberadoBy(emp,"Solar"); }
   });
   localStorage.setItem(KEY_P,JSON.stringify(P));
 }
@@ -1645,11 +1717,15 @@ function render(){
   syncProgress();
   const e=selected(), y4=year4(), f1=frontTotals(true), f2=frontTotals(false), ex=executed(), y5=y5tot();
   const linhasAno4=rowsFiltered();
-  const linhasFase1=linhasAno4.filter(r=>isReleased(r[5]));
-  const linhasFase2=linhasAno4.filter(r=>!isReleased(r[5]));
   const kmAno4=kmTotals(linhasAno4);
-  const kmFase1=kmTotals(linhasFase1);
-  const kmFase2=kmTotals(linhasFase2);
+  const kmFase1={
+    previsto:linhasAno4.reduce((s,r)=>s+kmLinearLinha(r,r[8],r[8]),0),
+    executado:linhasAno4.reduce((s,r)=>s+kmLinearLinha(r,r[9],r[10]),0)
+  };
+  kmFase1.saldo=Math.max(0,kmFase1.previsto-kmFase1.executado);
+  kmFase1.percentual=pct(kmFase1.executado,kmFase1.previsto);
+  const kmFase2Prev=linhasAno4.reduce((s,r)=>s+kmLinearLinha(r,Math.max(0,(+r[6]||0)-(+r[8]||0)),Math.max(0,(+r[7]||0)-(+r[8]||0))),0);
+  const kmFase2={previsto:kmFase2Prev,executado:0,saldo:kmFase2Prev,percentual:0};
   const kmFase3Previsto=y5KmPrevisto();
   const kmGeral={
     previsto: kmAno4.previsto + kmFase3Previsto,
@@ -1673,8 +1749,8 @@ function render(){
   $("phaseCards").innerHTML=
     kmOverallCard(kmGeral) +
     phase1KmCard(f1.p,f1.l,ex.p,ex.l,kmFase1) +
-    `<div class="phaseCard compactPhase"><div class=phaseHead><div><h2>Fase 2</h2><p>Todo o Ano 4 com status Não liberado</p></div><span class=tag>ANO 4</span></div>
-      <div class=metrics><div class=m><span>Postes não liberados</span><b>${fmt(f2.p)}</b></div><div class=m><span>Luminárias não liberadas</span><b>${fmt(f2.l)}</b></div><div class=m><span>KM linear previsto</span><b class=kmValue>${fmtKm(kmFase2.previsto)} km</b></div><div class=m><span>Critério</span><b>SHs não liberados</b></div></div></div>` +
+    `<div class="phaseCard compactPhase"><div class=phaseHead><div><h2>Fase 2</h2><p>Saldo previsto do Ano 4 ainda não liberado</p></div><span class=tag>ANO 4</span></div>
+      <div class=metrics><div class=m><span>Postes não liberados</span><b>${fmt(f2.p)}</b></div><div class=m><span>Luminárias não liberadas</span><b>${fmt(f2.l)}</b></div><div class=m><span>KM linear previsto</span><b class=kmValue>${fmtKm(kmFase2.previsto)} km</b></div><div class=m><span>Critério</span><b>Saldo ainda não liberado</b></div></div></div>` +
     `<div class="phaseCard compactPhase"><div class=phaseHead><div><h2>Fase 3</h2><p>Todo o quantitativo do Ano 5</p></div><span class=tag>ANO 5</span></div>
       <div class=metrics><div class=m><span>Postes previstos</span><b>${fmt(y5.p)}</b></div><div class=m><span>Luminárias previstas</span><b>${fmt(y5.l)}</b></div><div class=m><span>KM linear previsto</span><b class=kmValue>${fmtKm(kmFase3Previsto)} km</b></div><div class=m><span>Critério</span><b>Ano 5 completo</b></div></div></div>`;
 
@@ -1689,26 +1765,36 @@ function render(){
   }).join("");
 
   $("composition").innerHTML=
-    `<tr><td><b>Fase 1</b></td><td class=num>${fmt(f1.p)}</td><td class=num>${fmt(f1.l)}</td><td class=num><b>${fmtKm(kmFase1.previsto)} km</b></td><td>SHs do Ano 4 liberados</td></tr>
-     <tr><td><b>Fase 2</b></td><td class=num>${fmt(f2.p)}</td><td class=num>${fmt(f2.l)}</td><td class=num><b>${fmtKm(kmFase2.previsto)} km</b></td><td>SHs do Ano 4 não liberados</td></tr>
+    `<tr><td><b>Fase 1</b></td><td class=num>${fmt(f1.p)}</td><td class=num>${fmt(f1.l)}</td><td class=num><b>${fmtKm(kmFase1.previsto)} km</b></td><td>Quantitativos liberados do Ano 4</td></tr>
+     <tr><td><b>Fase 2</b></td><td class=num>${fmt(f2.p)}</td><td class=num>${fmt(f2.l)}</td><td class=num><b>${fmtKm(kmFase2.previsto)} km</b></td><td>Saldo previsto ainda não liberado</td></tr>
      <tr><td><b>Fase 3</b></td><td class=num>${fmt(y5.p)}</td><td class=num>${fmt(y5.l)}</td><td class=num><b>${fmtKm(kmFase3Previsto)} km</b></td><td>Ano 5 completo</td></tr>`;
 
   const ff=rowsFiltered();
   $("fronts").innerHTML=ff.map(r=>{
     const i=F.indexOf(r);
+    normalizarLinha(r);
     const kmPrev=kmLinearLinha(r,r[6],r[7]);
-    const kmExec=kmLinearLinha(r,r[8],r[9]);
+    const kmExec=kmLinearLinha(r,r[9],r[10]);
     const avKm=pct(kmExec,kmPrev);
+    const editLib=statusEditavel(r[5]);
+    const lim=limiteLiberacao(r);
+    const minLib=Math.max(+r[9]||0,+r[10]||0);
+    const libCell=editLib
+      ? `<input class="edit releaseEdit" type="number" min="${minLib}" max="${lim}" value="${r[8]}" onchange="updLiberado(${i},this.value)" title="Quantidade liberada para postes e luminárias">`
+      : `<input class="edit releaseAuto" type="number" value="${r[8]}" disabled title="Controlado automaticamente pelo status">`;
+    const kmPrevCell=(!considerarRotatoriaDispositivo() && isRotatoriaOuDispositivo(r))?'<span style="color:var(--muted);font-size:10px">desconsiderado</span>':`<b>${fmtKm(kmPrev)}</b> km`;
+    const kmExecCell=(!considerarRotatoriaDispositivo() && isRotatoriaOuDispositivo(r))?'<span style="color:var(--muted);font-size:10px">desconsiderado</span>':`<b>${fmtKm(kmExec)}</b> km`;
+    const avCell=(!considerarRotatoriaDispositivo() && isRotatoriaOuDispositivo(r))?'<span style="color:var(--muted);font-size:10px">fora do critério</span>':`<div class=bar><i style="width:${avKm}%"></i></div>${avKm.toFixed(1)}%`;
     return `<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td>
       <td><select class=status onchange="updF(${i},5,this.value)">${statuses.map(x=>`<option ${x===r[5]?"selected":""}>${x}</option>`).join("")}</select></td>
-      <td class=num><input class=edit type=number min=0 value="${r[6]}" onchange="updF(${i},6,this.value)"></td>
-      <td class=num><input class=edit type=number min=0 value="${r[7]}" onchange="updF(${i},7,this.value)"></td>
-      <td class=num><input class=edit type=number min=0 max="${r[6]}" value="${r[8]}" onchange="updExecF(${i},8,this.value)"></td>
-      <td class=num><input class=edit type=number min=0 max="${r[7]}" value="${r[9]}" onchange="updExecF(${i},9,this.value)"></td>
-      <td class=num>${(!considerarRotatoriaDispositivo() && isRotatoriaOuDispositivo(r))?'<span style="color:var(--muted);font-size:10px">desconsiderado</span>':`<b>${fmtKm(kmPrev)}</b> km`}</td>
-      <td class=num>${(!considerarRotatoriaDispositivo() && isRotatoriaOuDispositivo(r))?'<span style="color:var(--muted);font-size:10px">desconsiderado</span>':`<b>${fmtKm(kmExec)}</b> km`}</td>
-      <td>${(!considerarRotatoriaDispositivo() && isRotatoriaOuDispositivo(r))?'<span style="color:var(--muted);font-size:10px">fora do critério</span>':`<div class=bar><i style="width:${avKm}%"></i></div>${avKm.toFixed(1)}%`}</td>
-      <td>${r[10]||""}</td></tr>`;
+      <td class=num><input class=edit type=number min=0 value="${Math.min(+r[6]||0,+r[7]||0)}" onchange="updPrevisto(${i},this.value)" title="Quantidade prevista igual para postes e luminárias"></td>
+      <td class=num>${libCell}</td>
+      <td class=num><input class=edit type=number min=0 max="${r[8]}" value="${r[9]}" onchange="updExecF(${i},9,this.value)"></td>
+      <td class=num><input class=edit type=number min=0 max="${r[8]}" value="${r[10]}" onchange="updExecF(${i},10,this.value)"></td>
+      <td class=num>${kmPrevCell}</td>
+      <td class=num>${kmExecCell}</td>
+      <td>${avCell}</td>
+      <td><textarea class="obsEdit" placeholder="Digite uma observação para este SH..." onchange="updObs(${i},this.value)">${escHtml(r[11]||"")}</textarea></td></tr>`;
   }).join("");
 
   $("year5").innerHTML=Y5.filter(r=>!e||r[1]===e).map(r=>
@@ -1721,21 +1807,35 @@ function updP(i,v){
   render();
 }
 function updF(i,c,v){
-  if(c===6||c===7){
-    const previsto=Math.max(0,+v||0);
-    // Postes previstos e luminárias previstas permanecem sempre iguais.
-    F[i][6]=previsto;
-    F[i][7]=previsto;
-    if(F[i][8]>previsto) F[i][8]=previsto;
-    if(F[i][9]>previsto) F[i][9]=previsto;
-  } else {
-    F[i][c]=v;
-  }
+  if(c===5){
+    F[i][5]=v;
+    normalizarLinha(F[i]);
+  }else F[i][c]=v;
   localStorage.setItem(KEY_F,JSON.stringify(F));
   render();
 }
+function updPrevisto(i,v){
+  const previsto=Math.max(0,+v||0);
+  F[i][6]=previsto;
+  F[i][7]=previsto;
+  normalizarLinha(F[i]);
+  localStorage.setItem(KEY_F,JSON.stringify(F));
+  render();
+}
+function updLiberado(i,v){
+  if(!statusEditavel(F[i][5])) return render();
+  const lim=limiteLiberacao(F[i]);
+  const minLib=Math.max(+F[i][9]||0,+F[i][10]||0);
+  F[i][8]=Math.max(minLib,Math.min(+v||0,lim));
+  localStorage.setItem(KEY_F,JSON.stringify(F));
+  render();
+}
+function updObs(i,v){
+  F[i][11]=String(v||"");
+  localStorage.setItem(KEY_F,JSON.stringify(F));
+}
 function updExecF(i,c,v){
-  const lim=c===8?(+F[i][6]||0):(+F[i][7]||0);
+  const lim=+F[i][8]||0;
   F[i][c]=Math.max(0,Math.min(+v||0,lim));
   localStorage.setItem(KEY_F,JSON.stringify(F));
   render();
@@ -1753,7 +1853,7 @@ function exportPDF(){
 
 function exportBackup(){
   const backup={
-    versao:"v19",
+    versao:"v25",
     exportadoEm:new Date().toISOString(),
     frentes:F,
     progresso:P,
@@ -1782,7 +1882,7 @@ function importBackup(file){
     try{
       const b=JSON.parse(reader.result);
       if(!Array.isArray(b.frentes) || !Array.isArray(b.progresso)) throw new Error("Estrutura inválida");
-      F=b.frentes;
+      F=b.frentes.map(migrarLinha);
       P=b.progresso;
       localStorage.setItem(KEY_F,JSON.stringify(F));
       localStorage.setItem(KEY_P,JSON.stringify(P));
@@ -1807,12 +1907,12 @@ function importBackup(file){
 
 function resetAll(){
   if(confirm("Restaurar os dados iniciais? As alterações salvas neste navegador serão substituídas.")){
-    F=JSON.parse(JSON.stringify(F0));
+    F=F0.map(migrarLinha);
     P=JSON.parse(JSON.stringify(P0));
     localStorage.setItem(KEY_F,JSON.stringify(F));
     localStorage.setItem(KEY_P,JSON.stringify(P));
     localStorage.setItem("distanciaPosteConvencionalM","50");
-    localStorage.setItem("distanciaPosteSolarM","30");
+    localStorage.setItem("distanciaPosteSolarM","40");
     if(typeof distConv!=="undefined" && distConv) distConv.value="50";
     if(typeof distSolar!=="undefined" && distSolar) distSolar.value="40";
     render();
