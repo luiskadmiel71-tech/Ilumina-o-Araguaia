@@ -1771,13 +1771,13 @@ body.editIsLocked #viewGeral input.edit:not(.releaseAuto),body.editIsLocked #vie
   <div class="segmentedFilter segmentedFilterItem" role="group" aria-label="Selecionar item do painel">
     <span class="segmentedFilterLabel">Item</span>
     <div class="segmentedFilterTrack" role="tablist" aria-label="Item">
-      <button type="button" class="segOption itemOption active" id="tabGeral" data-view="geral" role="tab" aria-selected="true" aria-controls="viewGeral">Visão Geral</button>
+      <button type="button" class="segOption itemOption" id="tabGeral" data-view="geral" role="tab" aria-selected="false" aria-controls="viewGeral">Visão Geral</button>
       <button type="button" class="segOption itemOption" id="tabGraficos" data-view="graficos" role="tab" aria-selected="false" aria-controls="viewGraficos"><span class="segDot" aria-hidden="true"></span>Curvas</button>
-      <button type="button" class="segOption itemOption" id="tabPadroes" data-view="padroes" role="tab" aria-selected="false" aria-controls="viewPadroes"><span class="segDot" aria-hidden="true"></span>Padrões de energia</button>
+      <button type="button" class="segOption itemOption active" id="tabPadroes" data-view="padroes" role="tab" aria-selected="true" aria-controls="viewPadroes"><span class="segDot" aria-hidden="true"></span>Padrões de energia</button>
     </div>
   </div>
 </div>
-<div id="viewGeral" class="viewContent" role="tabpanel" aria-labelledby="tabGeral">
+<div id="viewGeral" class="viewContent" role="tabpanel" aria-labelledby="tabGeral" hidden="">
 <div class="kpis">
 <div class="kpi"><small>Ano 4 — postes e luminárias PQ</small><b id="a4p">1.511</b><span>quantitativo contratual cadastrado por item</span></div>
 <div class="kpi"><small>Prazo pactuado — contratadas</small><b id="prazoPact">8 dias</b><span>até 30/09/2026</span></div>
@@ -2308,7 +2308,7 @@ body.editIsLocked #viewGeral input.edit:not(.releaseAuto),body.editIsLocked #vie
   </table></div>
   <p id="curvasNota" class="curvesNote">Postes e luminárias por fornecedor. Traço (—) indica ausência de apontamento diário de luminárias no histórico anterior; não significa zero. O acumulado considera os quantitativos já executados.</p>
 </section>
-<section id="viewPadroes" class="emptyView padroesView" role="tabpanel" aria-labelledby="tabPadroes" hidden="">
+<section id="viewPadroes" class="emptyView padroesView" role="tabpanel" aria-labelledby="tabPadroes">
   <h2 class="padTitle">Padrões de entrada — gestão de energização</h2>
   <p class="padIntro">Acompanhamento individual dos padrões dos Anos 4 e 5, da instalação à energização. Prioridade: 63 padrões do Ano 4. Prazo contratual do Ano 5: 07/10/2027.</p>
   <div id="padKpis" class="padKpis" aria-label="Indicadores dos padrões de entrada"><div class="padKpi"><small>Total planejado</small><strong>74</strong><span>Anos 4 e 5</span></div><div class="padKpi"><small>Ano 4 · previsto</small><strong>64</strong><span>Prioridade 2026</span></div><div class="padKpi"><small>Ano 4 · instalados</small><strong>39 / 64</strong><span>Confirmados individualmente</span></div><div class="padKpi"><small>Ano 4 · energizados</small><strong>0 / 64</strong><span>Status energizado</span></div><div class="padKpi"><small>Ano 5 · previsto</small><strong>10</strong><span>1 instalado(s) · 0 energizado(s) · 0 reprovação(ões) no total</span></div></div>
@@ -2496,7 +2496,7 @@ body.editIsLocked #viewGeral input.edit:not(.releaseAuto),body.editIsLocked #vie
 </section>
 
 <footer class="footerTools">
-  <div class="footerControls" aria-label="Configurações do painel e do reporte">
+  <div class="footerControls" aria-label="Configurações do painel e do reporte" hidden="">
     <div class="footerControl footerControlKm">
       <label for="criterioKm">Critério de KM linear</label>
       <select id="criterioKm" title="Critério de medição em KM linear"><option value="considerar">KM linear — considerar rotatórias e dispositivos</option><option value="desconsiderar">KM linear — desconsiderar rotatórias e dispositivos</option></select>
@@ -2511,7 +2511,7 @@ body.editIsLocked #viewGeral input.edit:not(.releaseAuto),body.editIsLocked #vie
     Salvamento automático no navegador • use o backup para transferir ou recuperar os dados.
   </div>
   <div class="footActions">
-    <button type="button" id="copyWhatsappBtn" onclick="copiarResumoWhatsApp()" title="Copiar o consolidado do Ano 4 e da Fase 1 - Fator D">
+    <button type="button" id="copyWhatsappBtn" onclick="copiarResumoWhatsApp()" title="Copiar o resumo dos padrões de energia">
       <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="12" rx="2"></rect><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2"></path></svg>
       <span id="copyWhatsappLabel">Copiar resumo p/ WhatsApp</span>
     </button>
