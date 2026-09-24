@@ -1579,10 +1579,33 @@ main{
 #viewGraficos .curveStat span{font-size:10px;color:#72877a;display:block;margin-top:3px}
 #viewGraficos .curveGraph{min-width:0;overflow-x:auto}
 #viewGraficos .curveGraph svg{display:block;width:100%;height:auto;min-width:340px;font-family:Arial,sans-serif}
+#viewGraficos .curveGraph{position:relative}
+#viewGraficos .curveHoverTooltip{position:absolute;z-index:20;display:none;min-width:255px;max-width:340px;padding:10px 12px;border:1px solid #cfe1d2;border-radius:12px;background:rgba(255,255,255,.97);box-shadow:0 10px 28px rgba(0,73,39,.16);color:#294a36;font-size:10px;line-height:1.35;pointer-events:none;backdrop-filter:blur(3px)}
+#viewGraficos .curveHoverTooltip.show{display:block}
+#viewGraficos .curveHoverTooltip .chtDate{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px;padding-bottom:6px;border-bottom:1px solid #e4eee5;font-size:12px;font-weight:800;color:#075a34}
+#viewGraficos .curveHoverTooltip .chtMark{font-size:9px;font-weight:750;color:#8a6312;background:#fff5d9;border-radius:999px;padding:3px 7px;white-space:nowrap}
+#viewGraficos .curveHoverTooltip .chtRow{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:7px;align-items:center;padding:3px 0}
+#viewGraficos .curveHoverTooltip .chtSwatch{width:12px;height:3px;border-radius:999px;background:var(--cht)}
+#viewGraficos .curveHoverTooltip .chtName{min-width:0;color:#486451}
+#viewGraficos .curveHoverTooltip .chtVal{text-align:right;font-weight:800;color:#173f2a;white-space:nowrap}
+#viewGraficos .curveHoverTooltip .chtVal small{display:block;font-size:8px;font-weight:600;color:#74877a}
+#viewGraficos .curveHoverBand{cursor:crosshair}
+#viewGraficos .curveHoverBand:hover{fill:rgba(7,118,71,.025)}
 #viewGraficos .curveLegend{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:8px 0 0;color:#537062;font-size:10px}
 #viewGraficos .curveLegend span{display:inline-flex;align-items:center;gap:6px}
 #viewGraficos .curveKey{display:inline-block;width:15px;height:3px;border-radius:5px;background:var(--key)}
 #viewGraficos .curveKey.dashed{height:0;border-top:2px dashed var(--key);background:none}
+#viewGraficos #curveFase1Legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:9px;margin-top:14px;font-size:11px;color:#355846}
+#viewGraficos #curveFase1Legend .legendGroup{border:1px solid #dfeae1;border-radius:12px;background:#fbfefb;padding:9px 11px;display:flex;flex-direction:column;gap:6px;min-width:0}
+#viewGraficos #curveFase1Legend .legendTitle{font-size:9px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#6a8172;margin-bottom:1px}
+#viewGraficos #curveFase1Legend .legendItem{display:flex;align-items:center;gap:8px;line-height:1.25;font-size:11px;font-weight:650}
+#viewGraficos #curveFase1Legend .legendItem small{display:block;font-weight:500;color:#718578;font-size:9px;margin-left:36px}
+#viewGraficos #curveFase1Legend .legendGroup>small{display:block;font-weight:500;color:#718578;font-size:9px;line-height:1.35}
+#viewGraficos #curveFase1Legend .curveKey{width:28px;height:4px;border-radius:10px;flex:none}
+#viewGraficos #curveFase1Legend .curveKey.dashed{height:0;border-top:3px dashed var(--key);background:none}
+#viewGraficos #curveFase1Legend .curveKey.dotted{height:0;border-top:3px dotted var(--key);background:none}
+#viewGraficos #curveFase1Legend .curveKey.longdash{height:0;border-top:3px dashed var(--key);background:none}
+@media(max-width:760px){#viewGraficos #curveFase1Legend{grid-template-columns:1fr}}
 #viewGraficos .curveNote{font-size:10px;line-height:1.45;color:#708479;margin:10px 0 0}
 #viewGraficos .curveMetricSwitch{display:flex;gap:4px;align-items:center;padding:3px;background:#f5faf5;border:1px solid #dbe8df;border-radius:11px}
 #viewGraficos .curveMetricSwitch button{font:inherit;font-size:11px;font-weight:700;background:transparent;border:0;border-radius:8px;color:#42614d;padding:6px 9px;cursor:pointer}
@@ -1624,6 +1647,8 @@ main{
 #viewPadroes table td{vertical-align:middle;color:#2a4635}
 #viewPadroes .padResumoTable tr.padTHAtivo{background:#eaf9e9}
 #viewPadroes .padResumoTable tbody tr:hover,#viewPadroes .padRegistrosTable tbody tr:hover{background:#f6fbf6}
+#viewPadroes .padPrevistoInput{width:72px;min-width:72px;min-height:30px;padding:5px 7px;text-align:right;font-weight:800;font-variant-numeric:tabular-nums;border-radius:8px}
+#viewPadroes .padPrevistoInput:disabled{background:transparent;border-color:transparent;color:#2a4635;opacity:1;-webkit-text-fill-color:#2a4635}
 #viewPadroes .padButton{border:1px solid #bcdcc6;background:white;border-radius:10px;padding:7px 10px;color:#076337;cursor:pointer;font:inherit;font-weight:750;font-size:11px;white-space:nowrap}
 #viewPadroes .padButton:hover{background:#e8f8e8}
 #viewPadroes .padButton.padSelected{background:#087645;border-color:#087645;color:#fff}
@@ -1699,6 +1724,30 @@ body.editIsLocked #viewGeral input.edit:not(.releaseAuto),body.editIsLocked #vie
 @media(max-width:670px){.footerTools .editPassField,.footerTools .editPassField input{width:100%}.footerTools .editPassForm button{width:auto}}
 @media print{.footerTools .editSecurityPanel,.footerTools .editSecurityState{display:none!important}}
 </style>
+
+<style>
+/* Avanço físico em largura total após retirada da composição redundante das fases */
+.grid.progressGrid{grid-template-columns:minmax(0,1fr)!important;gap:0;margin-bottom:16px}
+.progressPanel{width:100%;min-width:0;padding:20px!important}
+.progressPanel .hint{margin-bottom:12px}
+.progressScroll{max-height:560px}
+.progressTable{table-layout:auto}
+.progressTable th:nth-child(1),.progressTable td:nth-child(1){width:12%;font-weight:800}
+.progressTable th:nth-child(2),.progressTable td:nth-child(2){width:25%}
+.progressTable th:nth-child(3),.progressTable td:nth-child(3){width:13%}
+.progressTable th:nth-child(4),.progressTable td:nth-child(4),.progressTable th:nth-child(5),.progressTable td:nth-child(5){width:14%}
+.progressTable th:last-child,.progressTable td:last-child{width:22%;min-width:190px}
+.progressTable td:last-child{font-weight:750;color:#365b46}
+.progressTable td:last-child .bar{display:inline-block;vertical-align:middle;width:calc(100% - 58px);min-width:115px;margin-right:8px;height:9px}
+.progressTable tbody tr:nth-child(4n+1) td{border-top:2px solid #dce9de}
+.progressTable tbody tr:first-child td{border-top:0}
+@media(max-width:800px){
+  .progressPanel{padding:14px!important}
+  .progressTable{min-width:760px}
+  .progressTable th:last-child,.progressTable td:last-child{min-width:150px}
+}
+@media print{.grid.progressGrid{grid-template-columns:1fr!important}.progressPanel{break-inside:auto!important}.progressScroll{max-height:none!important;overflow:visible!important}}
+</style>
 </head>
 <body class="">
 <header><div class="head"><div><div class="eyebrow">ECORODOVIAS • GESTÃO DE PROJETO</div><h1>Gestão da Implantação de Iluminação</h1><p>Fases dinâmicas • foco em postes e luminárias • Ano 4 + Ano 5</p></div>
@@ -1745,11 +1794,9 @@ body.editIsLocked #viewGeral input.edit:not(.releaseAuto),body.editIsLocked #vie
       <div class="metrics"><div class="m"><span>Postes não liberados</span><b>668</b></div><div class="m"><span>Luminárias não liberadas</span><b>668</b></div><div class="m"><span>KM linear previsto</span><b class="kmValue">31,79 km</b></div><div class="m"><span>Critério</span><b>Saldo ainda não liberado</b></div></div></div><div class="phaseCard compactPhase"><div class="phaseHead"><div><h2>Fase 3</h2><p>Todo o quantitativo do Ano 5 • prazo contratual: 07/10/2027</p></div><span class="tag">ANO 5</span></div>
       <div class="metrics"><div class="m"><span>Postes previstos</span><b>602</b></div><div class="m"><span>Luminárias previstas</span><b>602</b></div><div class="m"><span>KM linear previsto</span><b class="kmValue">28,01 km</b></div><div class="m"><span>Critério</span><b>Ano 5 completo</b></div></div></div></div>
 
-<div class="grid">
-<section class="panel"><h2>Avanço físico — fonte do executado</h2><div class="hint">A execução de <b>postes e luminárias</b> é alimentada por SH na tabela de Liberação por local. Este quadro consolida automaticamente os lançamentos e recalcula a Fase 1. Os demais indicadores vinculados ao item também são atualizados.</div><div class="scroll"><table><thead><tr><th>Empresa</th><th>Item</th><th>Solução</th><th class="num">Executado</th><th class="num">Escopo liberado</th><th>Avanço</th></tr></thead><tbody id="progress"><tr><td>PROSEG</td><td><b>Postes convencionais</b></td><td>Convencional</td><td class="num"><b>91</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">390 un</td><td><div class="bar"><i style="width:23.333333333333332%"></i></div>23.3%</td></tr><tr><td>PROSEG</td><td><b>Luminárias convencionais</b></td><td>Convencional</td><td class="num"><b>91</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">390 un</td><td><div class="bar"><i style="width:23.333333333333332%"></i></div>23.3%</td></tr><tr><td>PROSEG</td><td><b>Postes solares</b></td><td>Solar</td><td class="num"><b>0</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">0 un</td><td><div class="bar"><i style="width:0%"></i></div>0.0%</td></tr><tr><td>PROSEG</td><td><b>Kits FONROCHE</b></td><td>Solar</td><td class="num"><input class="edit" type="number" min="0" max="999999999" value="0" onchange="updP(3,this.value)"> un</td><td class="num">0 un</td><td><div class="bar"><i style="width:0%"></i></div>0.0%</td></tr><tr><td>ELEMENTU</td><td><b>Postes convencionais</b></td><td>Convencional</td><td class="num"><b>43</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">66 un</td><td><div class="bar"><i style="width:65.15151515151516%"></i></div>65.2%</td></tr><tr><td>ELEMENTU</td><td><b>Luminárias convencionais</b></td><td>Convencional</td><td class="num"><b>43</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">66 un</td><td><div class="bar"><i style="width:65.15151515151516%"></i></div>65.2%</td></tr><tr><td>ELEMENTU</td><td><b>Postes solares</b></td><td>Solar</td><td class="num"><b>54</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">68 un</td><td><div class="bar"><i style="width:79.41176470588235%"></i></div>79.4%</td></tr><tr><td>ELEMENTU</td><td><b>Luminárias / Kits FONROCHE</b></td><td>Solar</td><td class="num"><b>54</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">68 un</td><td><div class="bar"><i style="width:79.41176470588235%"></i></div>79.4%</td></tr><tr><td>AIVX</td><td><b>Postes convencionais</b></td><td>Convencional</td><td class="num"><b>80</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">160 un</td><td><div class="bar"><i style="width:50%"></i></div>50.0%</td></tr><tr><td>AIVX</td><td><b>Luminárias convencionais</b></td><td>Convencional</td><td class="num"><b>0</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">160 un</td><td><div class="bar"><i style="width:0%"></i></div>0.0%</td></tr><tr><td>AIVX</td><td><b>Postes solares</b></td><td>Solar</td><td class="num"><b>0</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">159 un</td><td><div class="bar"><i style="width:0%"></i></div>0.0%</td></tr><tr><td>AIVX</td><td><b>Luminárias / Kits FONROCHE</b></td><td>Solar</td><td class="num"><b>0</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">159 un</td><td><div class="bar"><i style="width:0%"></i></div>0.0%</td></tr></tbody></table></div></section>
-<section class="panel"><h2>Composição automática das fases</h2><div class="hint"><b>Fase 1</b> = Ano 4 liberado para execução. <b>Fase 2</b> = saldo do Ano 4 ainda não liberado. <b>Fase 3</b> = todo o escopo do Ano 5.</div><table><thead><tr><th>Fase</th><th class="num">Postes</th><th class="num">Luminárias</th><th class="num">KM linear previsto</th><th>Critério</th></tr></thead><tbody id="composition"><tr><td><b>Fase 1</b></td><td class="num">843</td><td class="num">843</td><td class="num"><b>39,88 km</b></td><td>Quantitativos liberados do Ano 4</td></tr>
-     <tr><td><b>Fase 2</b></td><td class="num">668</td><td class="num">668</td><td class="num"><b>31,79 km</b></td><td>Saldo previsto ainda não liberado</td></tr>
-     <tr><td><b>Fase 3</b></td><td class="num">602</td><td class="num">602</td><td class="num"><b>28,01 km</b></td><td>Ano 5 completo</td></tr></tbody></table></section>
+<div class="grid progressGrid">
+<section class="panel progressPanel"><h2>Avanço físico — fonte do executado</h2><div class="hint">A execução de <b>postes e luminárias</b> é alimentada por SH na tabela de Liberação por local. Este quadro consolida automaticamente os lançamentos por contratada e solução, refletindo diretamente na Fase 1 e nos indicadores do painel.</div><div class="scroll progressScroll"><table class="progressTable"><thead><tr><th>Empresa</th><th>Item</th><th>Solução</th><th class="num">Executado</th><th class="num">Escopo liberado</th><th>Avanço físico</th></tr></thead><tbody id="progress"><tr><td>PROSEG</td><td><b>Postes convencionais</b></td><td>Convencional</td><td class="num"><b>91</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">390 un</td><td><div class="bar"><i style="width:23.333333333333332%"></i></div>23.3%</td></tr><tr><td>PROSEG</td><td><b>Luminárias convencionais</b></td><td>Convencional</td><td class="num"><b>91</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">390 un</td><td><div class="bar"><i style="width:23.333333333333332%"></i></div>23.3%</td></tr><tr><td>PROSEG</td><td><b>Postes solares</b></td><td>Solar</td><td class="num"><b>0</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">0 un</td><td><div class="bar"><i style="width:0%"></i></div>0.0%</td></tr><tr><td>PROSEG</td><td><b>Kits FONROCHE</b></td><td>Solar</td><td class="num"><input class="edit" type="number" min="0" max="999999999" value="0" onchange="updP(3,this.value)"> un</td><td class="num">0 un</td><td><div class="bar"><i style="width:0%"></i></div>0.0%</td></tr><tr><td>ELEMENTU</td><td><b>Postes convencionais</b></td><td>Convencional</td><td class="num"><b>43</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">66 un</td><td><div class="bar"><i style="width:65.15151515151516%"></i></div>65.2%</td></tr><tr><td>ELEMENTU</td><td><b>Luminárias convencionais</b></td><td>Convencional</td><td class="num"><b>43</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">66 un</td><td><div class="bar"><i style="width:65.15151515151516%"></i></div>65.2%</td></tr><tr><td>ELEMENTU</td><td><b>Postes solares</b></td><td>Solar</td><td class="num"><b>54</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">68 un</td><td><div class="bar"><i style="width:79.41176470588235%"></i></div>79.4%</td></tr><tr><td>ELEMENTU</td><td><b>Luminárias / Kits FONROCHE</b></td><td>Solar</td><td class="num"><b>54</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">68 un</td><td><div class="bar"><i style="width:79.41176470588235%"></i></div>79.4%</td></tr><tr><td>AIVX</td><td><b>Postes convencionais</b></td><td>Convencional</td><td class="num"><b>80</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">160 un</td><td><div class="bar"><i style="width:50%"></i></div>50.0%</td></tr><tr><td>AIVX</td><td><b>Luminárias convencionais</b></td><td>Convencional</td><td class="num"><b>0</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">160 un</td><td><div class="bar"><i style="width:0%"></i></div>0.0%</td></tr><tr><td>AIVX</td><td><b>Postes solares</b></td><td>Solar</td><td class="num"><b>0</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">159 un</td><td><div class="bar"><i style="width:0%"></i></div>0.0%</td></tr><tr><td>AIVX</td><td><b>Luminárias / Kits FONROCHE</b></td><td>Solar</td><td class="num"><b>0</b> un<small style="display:block;color:var(--muted)">via execução por SH</small></td><td class="num">159 un</td><td><div class="bar"><i style="width:0%"></i></div>0.0%</td></tr></tbody></table></div></section>
+
 </div>
 
 <section class="panel" style="margin-bottom:14px"><h2>Liberação por local — altera automaticamente Fase 1 e Fase 2</h2>
@@ -2176,16 +2223,37 @@ body.editIsLocked #viewGeral input.edit:not(.releaseAuto),body.editIsLocked #vie
 <section id="viewGraficos" class="emptyView curvesView" role="tabpanel" aria-labelledby="tabGraficos" hidden="">
 <div class="curvesDashboard" id="curvesDashboard" aria-label="Curvas da implantação de iluminação">
   <article class="curveBox curveHero">
-    <div class="curveHead"><div><h3>Fase 1 – Fator D | Acompanhamento contratual</h3><p>Curva acumulada de postes e luminárias sobre o escopo atualmente liberado, com os marcos pactuado e contratual do Ano 4.</p></div><span class="curveFlag">PRIORIDADE · ANO 4</span></div>
-    <div class="curveStats" id="curveFase1Stats"><div class="curveStat"><small>Postes · executado / liberado</small><strong>268 / 843</strong><span>31.8% · saldo 575</span></div><div class="curveStat"><small>Luminárias · executado / liberado</small><strong>188 / 843</strong><span>22.3% · saldo 655</span></div><div class="curveStat"><small>KM linear · executado / liberado</small><strong>8,86 / 39,88 km</strong><span>Critério de KM selecionado no painel</span></div><div class="curveStat"><small>Ritmo até 30/09 · postes</small><strong>82,1 un./dia</strong><span>Referência matemática; não é previsão</span></div></div>
-    <div class="curveGraph" id="curveFase1Plot"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" role="img" aria-label="Curva da Fase 1 Fator D, executado sobre liberado, com prazos em 30 de setembro e 8 de outubro"><line x1="56" y1="259" x2="941" y2="259" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="263" text-anchor="end" font-size="11" fill="#72877a">0%</text><line x1="56" y1="201.75" x2="941" y2="201.75" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="205.75" text-anchor="end" font-size="11" fill="#72877a">25%</text><line x1="56" y1="144.5" x2="941" y2="144.5" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="148.5" text-anchor="end" font-size="11" fill="#72877a">50%</text><line x1="56" y1="87.25" x2="941" y2="87.25" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="91.25" text-anchor="end" font-size="11" fill="#72877a">75%</text><line x1="56" y1="30" x2="941" y2="30" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="34" text-anchor="end" font-size="11" fill="#72877a">100%</text><line x1="56" y1="30" x2="941" y2="30" stroke="#9baa9e" stroke-dasharray="7 5" stroke-width="1.5"></line><line x1="587" y1="30" x2="587" y2="259" stroke="#c99428" stroke-width="1.4" stroke-dasharray="4 4"></line><text x="580" y="17" text-anchor="end" font-size="10" fill="#c99428" font-weight="700">Pactuado 30/09</text><line x1="941" y1="30" x2="941" y2="259" stroke="#d97940" stroke-width="1.4" stroke-dasharray="4 4"></line><text x="934" y="17" text-anchor="end" font-size="10" fill="#d97940" font-weight="700">Contratual 08/10</text><line x1="56" y1="259" x2="941" y2="259" stroke="#9db5a4"></line><text x="56" y="285" text-anchor="middle" font-size="10" fill="#647b69">18/09</text><text x="144.5" y="285" text-anchor="middle" font-size="10" fill="#647b69">20/09</text><text x="233" y="285" text-anchor="middle" font-size="10" fill="#647b69">22/09</text><text x="277.25" y="285" text-anchor="middle" font-size="10" fill="#647b69">23/09</text><text x="587" y="285" text-anchor="middle" font-size="10" fill="#647b69">30/09</text><text x="941" y="285" text-anchor="middle" font-size="10" fill="#647b69">08/10</text><polyline points="56.0,220.2 144.5,202.8 233.0,186.2 277.3,186.2" fill="none" stroke="#067647" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></polyline><circle cx="56" cy="220.15421115065243" r="4.2" fill="#067647" stroke="white" stroke-width="1.5"><title>Postes · Fase 1 · 18/09/2026: 17.0% (143 un.)</title></circle><circle cx="144.5" cy="202.76868327402136" r="4.2" fill="#067647" stroke="white" stroke-width="1.5"><title>Postes · Fase 1 · 20/09/2026: 24.6% (207 un.)</title></circle><circle cx="233" cy="186.19810201660738" r="4.2" fill="#067647" stroke="white" stroke-width="1.5"><title>Postes · Fase 1 · 22/09/2026: 31.8% (268 un.)</title></circle><circle cx="277.25" cy="186.19810201660738" r="4.2" fill="#067647" stroke="white" stroke-width="1.5"><title>Postes · Fase 1 · 23/09/2026: 31.8% (268 un.)</title></circle><polyline points="56.0,226.4 144.5,219.9 233.0,207.9 277.3,207.9" fill="none" stroke="#82bf19" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></polyline><circle cx="56" cy="226.40213523131672" r="4.2" fill="#82bf19" stroke="white" stroke-width="1.5"><title>Luminárias · Fase 1 · 18/09/2026: 14.2% (120 un.)</title></circle><circle cx="144.5" cy="219.88256227758006" r="4.2" fill="#82bf19" stroke="white" stroke-width="1.5"><title>Luminárias · Fase 1 · 20/09/2026: 17.1% (144 un.)</title></circle><circle cx="233" cy="207.9300118623962" r="4.2" fill="#82bf19" stroke="white" stroke-width="1.5"><title>Luminárias · Fase 1 · 22/09/2026: 22.3% (188 un.)</title></circle><circle cx="277.25" cy="207.9300118623962" r="4.2" fill="#82bf19" stroke="white" stroke-width="1.5"><title>Luminárias · Fase 1 · 23/09/2026: 22.3% (188 un.)</title></circle></svg></div>
-    <div class="curveLegend"><span><i class="curveKey" style="--key:#067647"></i> Postes executados</span><span><i class="curveKey" style="--key:#82bf19"></i> Luminárias executadas</span><span><i class="curveKey dashed" style="--key:#91a39a"></i> 100% do liberado atual</span><span><i class="curveKey dashed" style="--key:#e5a23b"></i> Marcos de prazo</span></div>
-    <p class="curveNote" id="curveFase1Note">Meta representada: escopo liberado atual da Fase 1. Prazo pactuado: 30/09/2026; prazo contratual informado no painel: 08/10/2026. Para 30/09, o ritmo matemático restante é 82,1 un./dia de postes e 93,6 un./dia de luminárias. Não há curva prevista por data aprovada para comparar o realizado.</p>
+    <div class="curveHead"><div><h3>Fase 1 – Fator D | Acompanhamento contratual</h3><p>Realizado acumulado, mínimo contratual, ritmo necessário para cumprir o prazo e projeção futura pela média executada.</p></div><span class="curveFlag">PRIORIDADE · ANO 4</span></div>
+    <div class="curveStats" id="curveFase1Stats"><div class="curveStat"><small>Postes · executado / liberado</small><strong>268 / 843</strong><span>31.8% · saldo 575</span></div><div class="curveStat"><small>Luminárias · executado / liberado</small><strong>188 / 843</strong><span>22.3% · saldo 655</span></div><div class="curveStat"><small>Mínimo contratual</small><strong>90 P + 90 L/dia</strong><span>3 contratada(s) × 30 por item/dia</span></div><div class="curveStat"><small>Necessário até 08/10</small><strong>38,3 un./dia P</strong><span>43,7 un./dia L · ritmo linear até 100%</span></div><div class="curveStat"><small>Média realizada</small><strong>25,6 P/dia</strong><span>13,6 L/dia</span></div><div class="curveStat"><small>Projeção em 08/10</small><strong>77.3% P</strong><span>46.5% L pela média atual</span></div></div>
+    <div class="curveGraph" id="curveFase1Plot"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 345" role="img" aria-label="Fase 1 Fator D: realizado, mínimo contratual acumulado, ritmo necessário para o prazo e projeção futura pela média executada" data-curve-hover="1" data-percentage="1"><line x1="56" y1="304" x2="941" y2="304" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="308" text-anchor="end" font-size="11" fill="#72877a">0%</text><line x1="56" y1="235.5" x2="941" y2="235.5" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="239.5" text-anchor="end" font-size="11" fill="#72877a">25%</text><line x1="56" y1="167" x2="941" y2="167" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="171" text-anchor="end" font-size="11" fill="#72877a">50%</text><line x1="56" y1="98.5" x2="941" y2="98.5" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="102.5" text-anchor="end" font-size="11" fill="#72877a">75%</text><line x1="56" y1="30" x2="941" y2="30" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="34" text-anchor="end" font-size="11" fill="#72877a">100%</text><line x1="56" y1="30" x2="941" y2="30" stroke="#9baa9e" stroke-dasharray="7 5" stroke-width="1.5"></line><line x1="587" y1="30" x2="587" y2="304" stroke="#c99428" stroke-width="1.4" stroke-dasharray="4 4"></line><text x="580" y="17" text-anchor="end" font-size="10" fill="#c99428" font-weight="700">Pactuado 30/09</text><line x1="941" y1="30" x2="941" y2="304" stroke="#d97940" stroke-width="1.4" stroke-dasharray="4 4"></line><text x="934" y="17" text-anchor="end" font-size="10" fill="#d97940" font-weight="700">Contratual 08/10</text><line x1="56" y1="304" x2="941" y2="304" stroke="#9db5a4"></line><text x="56" y="330" text-anchor="middle" font-size="10" fill="#647b69">18/09</text><text x="233" y="330" text-anchor="middle" font-size="10" fill="#647b69">22/09</text><text x="410" y="330" text-anchor="middle" font-size="10" fill="#647b69">26/09</text><text x="587" y="330" text-anchor="middle" font-size="10" fill="#647b69">30/09</text><text x="764" y="330" text-anchor="middle" font-size="10" fill="#647b69">04/10</text><text x="941" y="330" text-anchor="middle" font-size="10" fill="#647b69">08/10</text><polyline points="56.0,257.5 144.5,236.7 233.0,216.9 277.3,216.9" fill="none" stroke="#006b3c" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round" opacity="1"></polyline><circle cx="56" cy="257.5207591933571" r="4.2" fill="#006b3c" stroke="white" stroke-width="1.5" opacity="1"><title>Realizado · postes · 18/09/2026: 17.0% (143 un.)</title></circle><circle cx="144.5" cy="236.71886120996442" r="4.2" fill="#006b3c" stroke="white" stroke-width="1.5" opacity="1"><title>Realizado · postes · 20/09/2026: 24.6% (207 un.)</title></circle><circle cx="233" cy="216.8920521945433" r="4.2" fill="#006b3c" stroke="white" stroke-width="1.5" opacity="1"><title>Realizado · postes · 22/09/2026: 31.8% (268 un.)</title></circle><circle cx="277.25" cy="216.8920521945433" r="4.2" fill="#006b3c" stroke="white" stroke-width="1.5" opacity="1"><title>Realizado · postes · 23/09/2026: 31.8% (268 un.)</title></circle><polyline points="56.0,265.0 144.5,257.2 233.0,242.9 277.3,242.9" fill="none" stroke="#78b900" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round" opacity="1"></polyline><circle cx="56" cy="264.9964412811388" r="4.2" fill="#78b900" stroke="white" stroke-width="1.5" opacity="1"><title>Realizado · luminárias · 18/09/2026: 14.2% (120 un.)</title></circle><circle cx="144.5" cy="257.19572953736656" r="4.2" fill="#78b900" stroke="white" stroke-width="1.5" opacity="1"><title>Realizado · luminárias · 20/09/2026: 17.1% (144 un.)</title></circle><circle cx="233" cy="242.8944246737841" r="4.2" fill="#78b900" stroke="white" stroke-width="1.5" opacity="1"><title>Realizado · luminárias · 22/09/2026: 22.3% (188 un.)</title></circle><circle cx="277.25" cy="242.8944246737841" r="4.2" fill="#78b900" stroke="white" stroke-width="1.5" opacity="1"><title>Realizado · luminárias · 23/09/2026: 22.3% (188 un.)</title></circle><polyline points="56.0,304.0 100.3,274.7 144.5,245.5 188.8,216.2 233.0,187.0 277.3,157.7 321.5,128.5 365.8,99.2 410.0,70.0 454.3,40.7 498.5,30.0 542.8,30.0 587.0,30.0 631.3,30.0 675.5,30.0 719.8,30.0 764.0,30.0 808.3,30.0 852.5,30.0 896.8,30.0 941.0,30.0" fill="none" stroke="#176f9d" stroke-width="2.5" stroke-dasharray="10 6" stroke-linejoin="round" stroke-linecap="round" opacity="0.95"></polyline><polyline points="277.3,216.9 321.5,204.4 365.8,192.0 410.0,179.5 454.3,167.1 498.5,154.6 542.8,142.1 587.0,129.7 631.3,117.2 675.5,104.8 719.8,92.3 764.0,79.8 808.3,67.4 852.5,54.9 896.8,42.5 941.0,30.0" fill="none" stroke="#d97706" stroke-width="2.7" stroke-dasharray="6 4" stroke-linejoin="round" stroke-linecap="round" opacity="0.98"></polyline><polyline points="277.3,242.9 321.5,228.7 365.8,214.5 410.0,200.3 454.3,186.1 498.5,171.9 542.8,157.7 587.0,143.5 631.3,129.4 675.5,115.2 719.8,101.0 764.0,86.8 808.3,72.6 852.5,58.4 896.8,44.2 941.0,30.0" fill="none" stroke="#c2410c" stroke-width="2.7" stroke-dasharray="6 4" stroke-linejoin="round" stroke-linecap="round" opacity="0.98"></polyline><polyline points="277.3,216.9 321.5,208.6 365.8,200.3 410.0,191.9 454.3,183.6 498.5,175.3 542.8,167.0 587.0,158.6 631.3,150.3 675.5,142.0 719.8,133.7 764.0,125.4 808.3,117.0 852.5,108.7 896.8,100.4 941.0,92.1" fill="none" stroke="#5b6fb5" stroke-width="2.5" stroke-dasharray="2 6" stroke-linejoin="round" stroke-linecap="round" opacity="0.95"></polyline><polyline points="277.3,242.9 321.5,238.5 365.8,234.1 410.0,229.6 454.3,225.2 498.5,220.8 542.8,216.4 587.0,212.0 631.3,207.5 675.5,203.1 719.8,198.7 764.0,194.3 808.3,189.8 852.5,185.4 896.8,181.0 941.0,176.6" fill="none" stroke="#8b5fa8" stroke-width="2.5" stroke-dasharray="2 6" stroke-linejoin="round" stroke-linecap="round" opacity="0.95"></polyline><line class="curveHoverGuide" x1="56" y1="30" x2="56" y2="304" stroke="#557365" stroke-width="1.3" stroke-dasharray="3 4" visibility="hidden" pointer-events="none"></line><rect class="curveHoverBand" x="56.0" y="30" width="22.1" height="274" fill="transparent" data-date="2026-09-18" data-x="56.0" data-info="%5B%7B%22nome%22%3A%22Realizado%20%C2%B7%20postes%22%2C%22cor%22%3A%22%23006b3c%22%2C%22valor%22%3A16.963226571767496%2C%22bruto%22%3A143%7D%2C%7B%22nome%22%3A%22Realizado%20%C2%B7%20lumin%C3%A1rias%22%2C%22cor%22%3A%22%2378b900%22%2C%22valor%22%3A14.234875444839858%2C%22bruto%22%3A120%7D%2C%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A0%2C%22bruto%22%3A0%7D%5D"></rect><rect class="curveHoverBand" x="78.1" y="30" width="44.3" height="274" fill="transparent" data-date="2026-09-19" data-x="100.3" data-info="%5B%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A10.676156583629894%2C%22bruto%22%3A90%7D%5D"></rect><rect class="curveHoverBand" x="122.4" y="30" width="44.3" height="274" fill="transparent" data-date="2026-09-20" data-x="144.5" data-info="%5B%7B%22nome%22%3A%22Realizado%20%C2%B7%20postes%22%2C%22cor%22%3A%22%23006b3c%22%2C%22valor%22%3A24.555160142348754%2C%22bruto%22%3A207%7D%2C%7B%22nome%22%3A%22Realizado%20%C2%B7%20lumin%C3%A1rias%22%2C%22cor%22%3A%22%2378b900%22%2C%22valor%22%3A17.081850533807827%2C%22bruto%22%3A144%7D%2C%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A21.352313167259787%2C%22bruto%22%3A180%7D%5D"></rect><rect class="curveHoverBand" x="166.6" y="30" width="44.3" height="274" fill="transparent" data-date="2026-09-21" data-x="188.8" data-info="%5B%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A32.02846975088968%2C%22bruto%22%3A270%7D%5D"></rect><rect class="curveHoverBand" x="210.9" y="30" width="44.3" height="274" fill="transparent" data-date="2026-09-22" data-x="233.0" data-info="%5B%7B%22nome%22%3A%22Realizado%20%C2%B7%20postes%22%2C%22cor%22%3A%22%23006b3c%22%2C%22valor%22%3A31.791221826809014%2C%22bruto%22%3A268%7D%2C%7B%22nome%22%3A%22Realizado%20%C2%B7%20lumin%C3%A1rias%22%2C%22cor%22%3A%22%2378b900%22%2C%22valor%22%3A22.301304863582445%2C%22bruto%22%3A188%7D%2C%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A42.704626334519574%2C%22bruto%22%3A360%7D%5D"></rect><rect class="curveHoverBand" x="255.1" y="30" width="44.3" height="274" fill="transparent" data-date="2026-09-23" data-x="277.3" data-info="%5B%7B%22nome%22%3A%22Realizado%20%C2%B7%20postes%22%2C%22cor%22%3A%22%23006b3c%22%2C%22valor%22%3A31.791221826809014%2C%22bruto%22%3A268%7D%2C%7B%22nome%22%3A%22Realizado%20%C2%B7%20lumin%C3%A1rias%22%2C%22cor%22%3A%22%2378b900%22%2C%22valor%22%3A22.301304863582445%2C%22bruto%22%3A188%7D%2C%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A53.380782918149464%2C%22bruto%22%3A450%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20postes%20%C2%B7%2038%2C3%2Fdia%22%2C%22cor%22%3A%22%23d97706%22%2C%22valor%22%3A31.791221826809014%2C%22bruto%22%3A268%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2043%2C7%2Fdia%22%2C%22cor%22%3A%22%23c2410c%22%2C%22valor%22%3A22.301304863582445%2C%22bruto%22%3A188%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20postes%20%C2%B7%2025%2C6%2Fdia%22%2C%22cor%22%3A%22%235b6fb5%22%2C%22valor%22%3A31.791221826809014%2C%22bruto%22%3A268%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2013%2C6%2Fdia%22%2C%22cor%22%3A%22%238b5fa8%22%2C%22valor%22%3A22.301304863582445%2C%22bruto%22%3A188%7D%5D"></rect><rect class="curveHoverBand" x="299.4" y="30" width="44.3" height="274" fill="transparent" data-date="2026-09-24" data-x="321.5" data-info="%5B%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A64.05693950177935%2C%22bruto%22%3A540%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20postes%20%C2%B7%2038%2C3%2Fdia%22%2C%22cor%22%3A%22%23d97706%22%2C%22valor%22%3A36.33847370502175%2C%22bruto%22%3A306.3333333333333%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2043%2C7%2Fdia%22%2C%22cor%22%3A%22%23c2410c%22%2C%22valor%22%3A27.481217872676943%2C%22bruto%22%3A231.66666666666666%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20postes%20%C2%B7%2025%2C6%2Fdia%22%2C%22cor%22%3A%22%235b6fb5%22%2C%22valor%22%3A34.82799525504152%2C%22bruto%22%3A293.6%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2013%2C6%2Fdia%22%2C%22cor%22%3A%22%238b5fa8%22%2C%22valor%22%3A23.914590747330962%2C%22bruto%22%3A201.6%7D%5D"></rect><rect class="curveHoverBand" x="343.6" y="30" width="44.3" height="274" fill="transparent" data-date="2026-09-25" data-x="365.8" data-info="%5B%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A74.73309608540926%2C%22bruto%22%3A630%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20postes%20%C2%B7%2038%2C3%2Fdia%22%2C%22cor%22%3A%22%23d97706%22%2C%22valor%22%3A40.88572558323449%2C%22bruto%22%3A344.6666666666667%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2043%2C7%2Fdia%22%2C%22cor%22%3A%22%23c2410c%22%2C%22valor%22%3A32.66113088177145%2C%22bruto%22%3A275.3333333333333%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20postes%20%C2%B7%2025%2C6%2Fdia%22%2C%22cor%22%3A%22%235b6fb5%22%2C%22valor%22%3A37.86476868327402%2C%22bruto%22%3A319.2%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2013%2C6%2Fdia%22%2C%22cor%22%3A%22%238b5fa8%22%2C%22valor%22%3A25.52787663107948%2C%22bruto%22%3A215.2%7D%5D"></rect><rect class="curveHoverBand" x="387.9" y="30" width="44.3" height="274" fill="transparent" data-date="2026-09-26" data-x="410.0" data-info="%5B%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A85.40925266903915%2C%22bruto%22%3A720%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20postes%20%C2%B7%2038%2C3%2Fdia%22%2C%22cor%22%3A%22%23d97706%22%2C%22valor%22%3A45.432977461447216%2C%22bruto%22%3A383%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2043%2C7%2Fdia%22%2C%22cor%22%3A%22%23c2410c%22%2C%22valor%22%3A37.841043890865954%2C%22bruto%22%3A319%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20postes%20%C2%B7%2025%2C6%2Fdia%22%2C%22cor%22%3A%22%235b6fb5%22%2C%22valor%22%3A40.90154211150652%2C%22bruto%22%3A344.8%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2013%2C6%2Fdia%22%2C%22cor%22%3A%22%238b5fa8%22%2C%22valor%22%3A27.141162514827997%2C%22bruto%22%3A228.8%7D%5D"></rect><rect class="curveHoverBand" x="432.1" y="30" width="44.3" height="274" fill="transparent" data-date="2026-09-27" data-x="454.3" data-info="%5B%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A96.08540925266904%2C%22bruto%22%3A810%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20postes%20%C2%B7%2038%2C3%2Fdia%22%2C%22cor%22%3A%22%23d97706%22%2C%22valor%22%3A49.98022933965995%2C%22bruto%22%3A421.33333333333337%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2043%2C7%2Fdia%22%2C%22cor%22%3A%22%23c2410c%22%2C%22valor%22%3A43.02095689996045%2C%22bruto%22%3A362.66666666666663%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20postes%20%C2%B7%2025%2C6%2Fdia%22%2C%22cor%22%3A%22%235b6fb5%22%2C%22valor%22%3A43.93831553973903%2C%22bruto%22%3A370.4%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2013%2C6%2Fdia%22%2C%22cor%22%3A%22%238b5fa8%22%2C%22valor%22%3A28.754448398576514%2C%22bruto%22%3A242.4%7D%5D"></rect><rect class="curveHoverBand" x="476.4" y="30" width="44.3" height="274" fill="transparent" data-date="2026-09-28" data-x="498.5" data-info="%5B%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A100%2C%22bruto%22%3A843%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20postes%20%C2%B7%2038%2C3%2Fdia%22%2C%22cor%22%3A%22%23d97706%22%2C%22valor%22%3A54.52748121787268%2C%22bruto%22%3A459.6666666666667%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2043%2C7%2Fdia%22%2C%22cor%22%3A%22%23c2410c%22%2C%22valor%22%3A48.20086990905496%2C%22bruto%22%3A406.3333333333333%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20postes%20%C2%B7%2025%2C6%2Fdia%22%2C%22cor%22%3A%22%235b6fb5%22%2C%22valor%22%3A46.97508896797153%2C%22bruto%22%3A396%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2013%2C6%2Fdia%22%2C%22cor%22%3A%22%238b5fa8%22%2C%22valor%22%3A30.36773428232503%2C%22bruto%22%3A256%7D%5D"></rect><rect class="curveHoverBand" x="520.6" y="30" width="44.3" height="274" fill="transparent" data-date="2026-09-29" data-x="542.8" data-info="%5B%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A100%2C%22bruto%22%3A843%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20postes%20%C2%B7%2038%2C3%2Fdia%22%2C%22cor%22%3A%22%23d97706%22%2C%22valor%22%3A59.07473309608541%2C%22bruto%22%3A498%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2043%2C7%2Fdia%22%2C%22cor%22%3A%22%23c2410c%22%2C%22valor%22%3A53.380782918149464%2C%22bruto%22%3A450%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20postes%20%C2%B7%2025%2C6%2Fdia%22%2C%22cor%22%3A%22%235b6fb5%22%2C%22valor%22%3A50.01186239620403%2C%22bruto%22%3A421.6%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2013%2C6%2Fdia%22%2C%22cor%22%3A%22%238b5fa8%22%2C%22valor%22%3A31.981020166073552%2C%22bruto%22%3A269.6%7D%5D"></rect><rect class="curveHoverBand" x="564.9" y="30" width="44.3" height="274" fill="transparent" data-date="2026-09-30" data-x="587.0" data-info="%5B%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A100%2C%22bruto%22%3A843%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20postes%20%C2%B7%2038%2C3%2Fdia%22%2C%22cor%22%3A%22%23d97706%22%2C%22valor%22%3A63.621984974298144%2C%22bruto%22%3A536.3333333333334%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2043%2C7%2Fdia%22%2C%22cor%22%3A%22%23c2410c%22%2C%22valor%22%3A58.56069592724397%2C%22bruto%22%3A493.66666666666663%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20postes%20%C2%B7%2025%2C6%2Fdia%22%2C%22cor%22%3A%22%235b6fb5%22%2C%22valor%22%3A53.048635824436545%2C%22bruto%22%3A447.20000000000005%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2013%2C6%2Fdia%22%2C%22cor%22%3A%22%238b5fa8%22%2C%22valor%22%3A33.594306049822066%2C%22bruto%22%3A283.2%7D%5D"></rect><rect class="curveHoverBand" x="609.1" y="30" width="44.3" height="274" fill="transparent" data-date="2026-10-01" data-x="631.3" data-info="%5B%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A100%2C%22bruto%22%3A843%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20postes%20%C2%B7%2038%2C3%2Fdia%22%2C%22cor%22%3A%22%23d97706%22%2C%22valor%22%3A68.16923685251088%2C%22bruto%22%3A574.6666666666667%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2043%2C7%2Fdia%22%2C%22cor%22%3A%22%23c2410c%22%2C%22valor%22%3A63.74060893633847%2C%22bruto%22%3A537.3333333333333%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20postes%20%C2%B7%2025%2C6%2Fdia%22%2C%22cor%22%3A%22%235b6fb5%22%2C%22valor%22%3A56.08540925266904%2C%22bruto%22%3A472.8%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2013%2C6%2Fdia%22%2C%22cor%22%3A%22%238b5fa8%22%2C%22valor%22%3A35.20759193357058%2C%22bruto%22%3A296.8%7D%5D"></rect><rect class="curveHoverBand" x="653.4" y="30" width="44.3" height="274" fill="transparent" data-date="2026-10-02" data-x="675.5" data-info="%5B%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A100%2C%22bruto%22%3A843%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20postes%20%C2%B7%2038%2C3%2Fdia%22%2C%22cor%22%3A%22%23d97706%22%2C%22valor%22%3A72.71648873072361%2C%22bruto%22%3A613%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2043%2C7%2Fdia%22%2C%22cor%22%3A%22%23c2410c%22%2C%22valor%22%3A68.92052194543298%2C%22bruto%22%3A581%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20postes%20%C2%B7%2025%2C6%2Fdia%22%2C%22cor%22%3A%22%235b6fb5%22%2C%22valor%22%3A59.122182680901545%2C%22bruto%22%3A498.4%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2013%2C6%2Fdia%22%2C%22cor%22%3A%22%238b5fa8%22%2C%22valor%22%3A36.820877817319094%2C%22bruto%22%3A310.4%7D%5D"></rect><rect class="curveHoverBand" x="697.6" y="30" width="44.3" height="274" fill="transparent" data-date="2026-10-03" data-x="719.8" data-info="%5B%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A100%2C%22bruto%22%3A843%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20postes%20%C2%B7%2038%2C3%2Fdia%22%2C%22cor%22%3A%22%23d97706%22%2C%22valor%22%3A77.26374060893635%2C%22bruto%22%3A651.3333333333334%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2043%2C7%2Fdia%22%2C%22cor%22%3A%22%23c2410c%22%2C%22valor%22%3A74.10043495452747%2C%22bruto%22%3A624.6666666666666%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20postes%20%C2%B7%2025%2C6%2Fdia%22%2C%22cor%22%3A%22%235b6fb5%22%2C%22valor%22%3A62.158956109134046%2C%22bruto%22%3A524%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2013%2C6%2Fdia%22%2C%22cor%22%3A%22%238b5fa8%22%2C%22valor%22%3A38.43416370106762%2C%22bruto%22%3A324%7D%5D"></rect><rect class="curveHoverBand" x="741.9" y="30" width="44.3" height="274" fill="transparent" data-date="2026-10-04" data-x="764.0" data-info="%5B%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A100%2C%22bruto%22%3A843%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20postes%20%C2%B7%2038%2C3%2Fdia%22%2C%22cor%22%3A%22%23d97706%22%2C%22valor%22%3A81.81099248714908%2C%22bruto%22%3A689.6666666666667%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2043%2C7%2Fdia%22%2C%22cor%22%3A%22%23c2410c%22%2C%22valor%22%3A79.28034796362198%2C%22bruto%22%3A668.3333333333333%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20postes%20%C2%B7%2025%2C6%2Fdia%22%2C%22cor%22%3A%22%235b6fb5%22%2C%22valor%22%3A65.19572953736655%2C%22bruto%22%3A549.6%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2013%2C6%2Fdia%22%2C%22cor%22%3A%22%238b5fa8%22%2C%22valor%22%3A40.047449584816135%2C%22bruto%22%3A337.6%7D%5D"></rect><rect class="curveHoverBand" x="786.1" y="30" width="44.3" height="274" fill="transparent" data-date="2026-10-05" data-x="808.3" data-info="%5B%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A100%2C%22bruto%22%3A843%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20postes%20%C2%B7%2038%2C3%2Fdia%22%2C%22cor%22%3A%22%23d97706%22%2C%22valor%22%3A86.3582443653618%2C%22bruto%22%3A728%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2043%2C7%2Fdia%22%2C%22cor%22%3A%22%23c2410c%22%2C%22valor%22%3A84.46026097271648%2C%22bruto%22%3A712%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20postes%20%C2%B7%2025%2C6%2Fdia%22%2C%22cor%22%3A%22%235b6fb5%22%2C%22valor%22%3A68.23250296559905%2C%22bruto%22%3A575.2%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2013%2C6%2Fdia%22%2C%22cor%22%3A%22%238b5fa8%22%2C%22valor%22%3A41.66073546856465%2C%22bruto%22%3A351.2%7D%5D"></rect><rect class="curveHoverBand" x="830.4" y="30" width="44.3" height="274" fill="transparent" data-date="2026-10-06" data-x="852.5" data-info="%5B%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A100%2C%22bruto%22%3A843%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20postes%20%C2%B7%2038%2C3%2Fdia%22%2C%22cor%22%3A%22%23d97706%22%2C%22valor%22%3A90.90549624357455%2C%22bruto%22%3A766.3333333333334%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2043%2C7%2Fdia%22%2C%22cor%22%3A%22%23c2410c%22%2C%22valor%22%3A89.64017398181097%2C%22bruto%22%3A755.6666666666666%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20postes%20%C2%B7%2025%2C6%2Fdia%22%2C%22cor%22%3A%22%235b6fb5%22%2C%22valor%22%3A71.26927639383155%2C%22bruto%22%3A600.8%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2013%2C6%2Fdia%22%2C%22cor%22%3A%22%238b5fa8%22%2C%22valor%22%3A43.274021352313156%2C%22bruto%22%3A364.79999999999995%7D%5D"></rect><rect class="curveHoverBand" x="874.6" y="30" width="44.3" height="274" fill="transparent" data-date="2026-10-07" data-x="896.8" data-info="%5B%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A100%2C%22bruto%22%3A843%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20postes%20%C2%B7%2038%2C3%2Fdia%22%2C%22cor%22%3A%22%23d97706%22%2C%22valor%22%3A95.45274812178728%2C%22bruto%22%3A804.6666666666667%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2043%2C7%2Fdia%22%2C%22cor%22%3A%22%23c2410c%22%2C%22valor%22%3A94.8200869909055%2C%22bruto%22%3A799.3333333333333%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20postes%20%C2%B7%2025%2C6%2Fdia%22%2C%22cor%22%3A%22%235b6fb5%22%2C%22valor%22%3A74.30604982206407%2C%22bruto%22%3A626.4000000000001%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2013%2C6%2Fdia%22%2C%22cor%22%3A%22%238b5fa8%22%2C%22valor%22%3A44.88730723606169%2C%22bruto%22%3A378.4%7D%5D"></rect><rect class="curveHoverBand" x="918.9" y="30" width="22.1" height="274" fill="transparent" data-date="2026-10-08" data-x="941.0" data-info="%5B%7B%22nome%22%3A%22M%C3%ADnimo%20contratual%20acumulado%20%C2%B7%2090%2Fdia%22%2C%22cor%22%3A%22%23176f9d%22%2C%22valor%22%3A100%2C%22bruto%22%3A843%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20postes%20%C2%B7%2038%2C3%2Fdia%22%2C%22cor%22%3A%22%23d97706%22%2C%22valor%22%3A100%2C%22bruto%22%3A843%7D%2C%7B%22nome%22%3A%22Necess%C3%A1rio%20ao%20prazo%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2043%2C7%2Fdia%22%2C%22cor%22%3A%22%23c2410c%22%2C%22valor%22%3A100%2C%22bruto%22%3A843%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20postes%20%C2%B7%2025%2C6%2Fdia%22%2C%22cor%22%3A%22%235b6fb5%22%2C%22valor%22%3A77.34282325029656%2C%22bruto%22%3A652%7D%2C%7B%22nome%22%3A%22Proje%C3%A7%C3%A3o%20pela%20m%C3%A9dia%20%C2%B7%20lumin%C3%A1rias%20%C2%B7%2013%2C6%2Fdia%22%2C%22cor%22%3A%22%238b5fa8%22%2C%22valor%22%3A46.500593119810205%2C%22bruto%22%3A392%7D%5D"></rect></svg><div class="curveHoverTooltip"></div></div>
+    <div class="curveLegend" id="curveFase1Legend">
+    <div class="legendGroup"><div class="legendTitle">Realizado acumulado</div>
+      <div class="legendItem"><i class="curveKey" style="--key:#006b3c"></i>Postes executados</div>
+      <div class="legendItem"><i class="curveKey" style="--key:#78b900"></i>Luminárias executadas</div>
+    </div>
+    <div class="legendGroup"><div class="legendTitle">Mínimo contratual</div>
+      <div class="legendItem"><i class="curveKey longdash" style="--key:#176f9d"></i>90 por dia / item</div>
+      <small>Parte do início da série (18/09) e acumula 30 por contratada/dia.</small>
+    </div>
+    <div class="legendGroup"><div class="legendTitle">Ritmo necessário até 08/10</div>
+      <div class="legendItem"><i class="curveKey dashed" style="--key:#d97706"></i>Postes · 38,3/dia</div>
+      <div class="legendItem"><i class="curveKey dashed" style="--key:#c2410c"></i>Luminárias · 43,7/dia</div>
+    </div>
+    <div class="legendGroup"><div class="legendTitle">Projeção pela média realizada</div>
+      <div class="legendItem"><i class="curveKey dotted" style="--key:#5b6fb5"></i>Postes · 25,6/dia</div>
+      <div class="legendItem"><i class="curveKey dotted" style="--key:#8b5fa8"></i>Luminárias · 13,6/dia</div>
+    </div>
+    <div class="legendGroup"><div class="legendTitle">Marcos e meta</div>
+      <div class="legendItem"><i class="curveKey dashed" style="--key:#91a39a"></i>100% do escopo liberado</div>
+      <div class="legendItem"><i class="curveKey dashed" style="--key:#c99428"></i>Pactuado · 30/09</div>
+      <div class="legendItem"><i class="curveKey dashed" style="--key:#d97940"></i>Contratual · 08/10</div>
+    </div></div>
+    <p class="curveNote" id="curveFase1Note">Leitura do gráfico: o mínimo contratual acumula 90 postes e 90 luminárias por dia no filtro atual, desde 18/09/2026. O ritmo necessário parte do realizado atual e alcança 100% em 08/10/2026. A projeção futura usa a média diária dos apontamentos concluídos anteriores à data selecionada. No ritmo médio atual, a projeção para 08/10 é 77.3% de postes e 46.5% de luminárias.</p>
   </article>
   <article class="curveBox">
     <div class="curveHead"><div><h3>Evolução do programa — Anos 4 e 5</h3><p>Postes e luminárias cadastrados na execução, comparados ao escopo integral dos dois anos.</p></div><span class="curveFlag">ESCOPO GLOBAL</span></div>
     <div class="curveStats" id="curveGeralStats"><div class="curveStat"><small>Ano 4 · postes / luminárias</small><strong>1.511 / 1.511</strong><span>Escopo cadastrado</span></div><div class="curveStat"><small>Ano 5 · postes / luminárias</small><strong>602 / 602</strong><span>Escopo previsto, sem produção apontada</span></div><div class="curveStat"><small>Total Anos 4 + 5</small><strong>2.113 / 2.113</strong><span>Postes / luminárias previstos</span></div></div>
-    <div class="curveGraph" id="curveGeralPlot"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" role="img" aria-label="Evolução do quantitativo registrado do Ano 4 em relação ao escopo total dos Anos 4 e 5"><line x1="56" y1="259" x2="941" y2="259" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="263" text-anchor="end" font-size="11" fill="#72877a">0%</text><line x1="56" y1="201.75" x2="941" y2="201.75" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="205.75" text-anchor="end" font-size="11" fill="#72877a">25%</text><line x1="56" y1="144.5" x2="941" y2="144.5" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="148.5" text-anchor="end" font-size="11" fill="#72877a">50%</text><line x1="56" y1="87.25" x2="941" y2="87.25" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="91.25" text-anchor="end" font-size="11" fill="#72877a">75%</text><line x1="56" y1="30" x2="941" y2="30" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="34" text-anchor="end" font-size="11" fill="#72877a">100%</text><line x1="56" y1="30" x2="941" y2="30" stroke="#9baa9e" stroke-dasharray="7 5" stroke-width="1.5"></line><line x1="56" y1="259" x2="941" y2="259" stroke="#9db5a4"></line><text x="56" y="285" text-anchor="middle" font-size="10" fill="#647b69">18/09</text><text x="410" y="285" text-anchor="middle" font-size="10" fill="#647b69">20/09</text><text x="764" y="285" text-anchor="middle" font-size="10" fill="#647b69">22/09</text><text x="941" y="285" text-anchor="middle" font-size="10" fill="#647b69">23/09</text><polyline points="56.0,243.5 410.0,236.6 764.0,230.0 941.0,230.0" fill="none" stroke="#067647" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></polyline><circle cx="56" cy="243.50212967345007" r="4.2" fill="#067647" stroke="white" stroke-width="1.5"><title>Postes registrados / total previsto · 18/09/2026: 6.8% (143 un.)</title></circle><circle cx="410" cy="236.5660198769522" r="4.2" fill="#067647" stroke="white" stroke-width="1.5"><title>Postes registrados / total previsto · 20/09/2026: 9.8% (207 un.)</title></circle><circle cx="764" cy="229.95504022716517" r="4.2" fill="#067647" stroke="white" stroke-width="1.5"><title>Postes registrados / total previsto · 22/09/2026: 12.7% (268 un.)</title></circle><circle cx="941" cy="229.95504022716517" r="4.2" fill="#067647" stroke="white" stroke-width="1.5"><title>Postes registrados / total previsto · 23/09/2026: 12.7% (268 un.)</title></circle><polyline points="56.0,246.0 410.0,243.4 764.0,238.6 941.0,238.6" fill="none" stroke="#82bf19" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></polyline><circle cx="56" cy="245.9947941315665" r="4.2" fill="#82bf19" stroke="white" stroke-width="1.5"><title>Luminárias registradas / total previsto · 18/09/2026: 5.7% (120 un.)</title></circle><circle cx="410" cy="243.3937529578798" r="4.2" fill="#82bf19" stroke="white" stroke-width="1.5"><title>Luminárias registradas / total previsto · 20/09/2026: 6.8% (144 un.)</title></circle><circle cx="764" cy="238.6251774727875" r="4.2" fill="#82bf19" stroke="white" stroke-width="1.5"><title>Luminárias registradas / total previsto · 22/09/2026: 8.9% (188 un.)</title></circle><circle cx="941" cy="238.6251774727875" r="4.2" fill="#82bf19" stroke="white" stroke-width="1.5"><title>Luminárias registradas / total previsto · 23/09/2026: 8.9% (188 un.)</title></circle></svg></div>
+    <div class="curveGraph" id="curveGeralPlot"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" role="img" aria-label="Evolução do quantitativo registrado do Ano 4 em relação ao escopo total dos Anos 4 e 5" data-curve-hover="1" data-percentage="1"><line x1="56" y1="259" x2="941" y2="259" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="263" text-anchor="end" font-size="11" fill="#72877a">0%</text><line x1="56" y1="201.75" x2="941" y2="201.75" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="205.75" text-anchor="end" font-size="11" fill="#72877a">25%</text><line x1="56" y1="144.5" x2="941" y2="144.5" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="148.5" text-anchor="end" font-size="11" fill="#72877a">50%</text><line x1="56" y1="87.25" x2="941" y2="87.25" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="91.25" text-anchor="end" font-size="11" fill="#72877a">75%</text><line x1="56" y1="30" x2="941" y2="30" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="34" text-anchor="end" font-size="11" fill="#72877a">100%</text><line x1="56" y1="30" x2="941" y2="30" stroke="#9baa9e" stroke-dasharray="7 5" stroke-width="1.5"></line><line x1="56" y1="259" x2="941" y2="259" stroke="#9db5a4"></line><text x="56" y="285" text-anchor="middle" font-size="10" fill="#647b69">18/09</text><text x="410" y="285" text-anchor="middle" font-size="10" fill="#647b69">20/09</text><text x="764" y="285" text-anchor="middle" font-size="10" fill="#647b69">22/09</text><text x="941" y="285" text-anchor="middle" font-size="10" fill="#647b69">23/09</text><polyline points="56.0,243.5 410.0,236.6 764.0,230.0 941.0,230.0" fill="none" stroke="#067647" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="1"></polyline><circle cx="56" cy="243.50212967345007" r="4.2" fill="#067647" stroke="white" stroke-width="1.5" opacity="1"><title>Postes registrados / total previsto · 18/09/2026: 6.8% (143 un.)</title></circle><circle cx="410" cy="236.5660198769522" r="4.2" fill="#067647" stroke="white" stroke-width="1.5" opacity="1"><title>Postes registrados / total previsto · 20/09/2026: 9.8% (207 un.)</title></circle><circle cx="764" cy="229.95504022716517" r="4.2" fill="#067647" stroke="white" stroke-width="1.5" opacity="1"><title>Postes registrados / total previsto · 22/09/2026: 12.7% (268 un.)</title></circle><circle cx="941" cy="229.95504022716517" r="4.2" fill="#067647" stroke="white" stroke-width="1.5" opacity="1"><title>Postes registrados / total previsto · 23/09/2026: 12.7% (268 un.)</title></circle><polyline points="56.0,246.0 410.0,243.4 764.0,238.6 941.0,238.6" fill="none" stroke="#82bf19" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="1"></polyline><circle cx="56" cy="245.9947941315665" r="4.2" fill="#82bf19" stroke="white" stroke-width="1.5" opacity="1"><title>Luminárias registradas / total previsto · 18/09/2026: 5.7% (120 un.)</title></circle><circle cx="410" cy="243.3937529578798" r="4.2" fill="#82bf19" stroke="white" stroke-width="1.5" opacity="1"><title>Luminárias registradas / total previsto · 20/09/2026: 6.8% (144 un.)</title></circle><circle cx="764" cy="238.6251774727875" r="4.2" fill="#82bf19" stroke="white" stroke-width="1.5" opacity="1"><title>Luminárias registradas / total previsto · 22/09/2026: 8.9% (188 un.)</title></circle><circle cx="941" cy="238.6251774727875" r="4.2" fill="#82bf19" stroke="white" stroke-width="1.5" opacity="1"><title>Luminárias registradas / total previsto · 23/09/2026: 8.9% (188 un.)</title></circle><line class="curveHoverGuide" x1="56" y1="30" x2="56" y2="259" stroke="#557365" stroke-width="1.3" stroke-dasharray="3 4" visibility="hidden" pointer-events="none"></line><rect class="curveHoverBand" x="56.0" y="30" width="177.0" height="229" fill="transparent" data-date="2026-09-18" data-x="56.0" data-info="%5B%7B%22nome%22%3A%22Postes%20registrados%20%2F%20total%20previsto%22%2C%22cor%22%3A%22%23067647%22%2C%22valor%22%3A6.767628963558921%2C%22bruto%22%3A143%7D%2C%7B%22nome%22%3A%22Lumin%C3%A1rias%20registradas%20%2F%20total%20previsto%22%2C%22cor%22%3A%22%2382bf19%22%2C%22valor%22%3A5.679129200189304%2C%22bruto%22%3A120%7D%5D"></rect><rect class="curveHoverBand" x="233.0" y="30" width="354.0" height="229" fill="transparent" data-date="2026-09-20" data-x="410.0" data-info="%5B%7B%22nome%22%3A%22Postes%20registrados%20%2F%20total%20previsto%22%2C%22cor%22%3A%22%23067647%22%2C%22valor%22%3A9.796497870326549%2C%22bruto%22%3A207%7D%2C%7B%22nome%22%3A%22Lumin%C3%A1rias%20registradas%20%2F%20total%20previsto%22%2C%22cor%22%3A%22%2382bf19%22%2C%22valor%22%3A6.814955040227165%2C%22bruto%22%3A144%7D%5D"></rect><rect class="curveHoverBand" x="587.0" y="30" width="265.5" height="229" fill="transparent" data-date="2026-09-22" data-x="764.0" data-info="%5B%7B%22nome%22%3A%22Postes%20registrados%20%2F%20total%20previsto%22%2C%22cor%22%3A%22%23067647%22%2C%22valor%22%3A12.683388547089447%2C%22bruto%22%3A268%7D%2C%7B%22nome%22%3A%22Lumin%C3%A1rias%20registradas%20%2F%20total%20previsto%22%2C%22cor%22%3A%22%2382bf19%22%2C%22valor%22%3A8.89730241362991%2C%22bruto%22%3A188%7D%5D"></rect><rect class="curveHoverBand" x="852.5" y="30" width="88.5" height="229" fill="transparent" data-date="2026-09-23" data-x="941.0" data-info="%5B%7B%22nome%22%3A%22Postes%20registrados%20%2F%20total%20previsto%22%2C%22cor%22%3A%22%23067647%22%2C%22valor%22%3A12.683388547089447%2C%22bruto%22%3A268%7D%2C%7B%22nome%22%3A%22Lumin%C3%A1rias%20registradas%20%2F%20total%20previsto%22%2C%22cor%22%3A%22%2382bf19%22%2C%22valor%22%3A8.89730241362991%2C%22bruto%22%3A188%7D%5D"></rect></svg><div class="curveHoverTooltip"></div></div>
     <div class="curveLegend"><span><i class="curveKey" style="--key:#067647"></i> Postes registrados</span><span><i class="curveKey" style="--key:#82bf19"></i> Luminárias registradas</span><span><i class="curveKey dashed" style="--key:#91a39a"></i> Escopo total</span></div>
     <p class="curveNote">A base atual registra execução por SH do Ano 4; o Ano 5 possui quantitativos previstos, mas não possui apontamentos de execução nesta versão. A linha realizada não presume execução zero do Ano 5.</p>
   </article>
@@ -2207,7 +2275,7 @@ body.editIsLocked #viewGeral input.edit:not(.releaseAuto),body.editIsLocked #vie
   </article>
   <article class="curveBox">
     <div class="curveHead"><div><h3>Execução acumulada por fornecedor</h3><p>Evolução dos quantitativos registrados em cada data com medição disponível.</p></div><div class="curveMetricSwitch" role="group" aria-label="Item dos gráficos por fornecedor e produtividade"><button type="button" class="active" data-curve-metric="postes" aria-pressed="true">Postes</button><button type="button" data-curve-metric="luminarias" aria-pressed="false">Luminárias</button></div></div>
-    <div class="curveGraph" id="curveFornecedorPlot"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" role="img" aria-label="Evolução acumulada por fornecedor em postes"><line x1="56" y1="259" x2="941" y2="259" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="263" text-anchor="end" font-size="11" fill="#72877a">0</text><line x1="56" y1="201.75" x2="941" y2="201.75" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="205.75" text-anchor="end" font-size="11" fill="#72877a">25</text><line x1="56" y1="144.5" x2="941" y2="144.5" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="148.5" text-anchor="end" font-size="11" fill="#72877a">50</text><line x1="56" y1="87.25" x2="941" y2="87.25" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="91.25" text-anchor="end" font-size="11" fill="#72877a">75</text><line x1="56" y1="30" x2="941" y2="30" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="34" text-anchor="end" font-size="11" fill="#72877a">100</text><line x1="56" y1="259" x2="941" y2="259" stroke="#9db5a4"></line><text x="56" y="285" text-anchor="middle" font-size="10" fill="#647b69">18/09</text><text x="410" y="285" text-anchor="middle" font-size="10" fill="#647b69">20/09</text><text x="764" y="285" text-anchor="middle" font-size="10" fill="#647b69">22/09</text><text x="941" y="285" text-anchor="middle" font-size="10" fill="#647b69">23/09</text><polyline points="56.0,155.9 410.0,126.2 764.0,50.6 941.0,50.6" fill="none" stroke="#067647" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></polyline><circle cx="56" cy="155.95" r="4.2" fill="#067647" stroke="white" stroke-width="1.5"><title>PROSEG · 18/09/2026: 45</title></circle><circle cx="410" cy="126.18" r="4.2" fill="#067647" stroke="white" stroke-width="1.5"><title>PROSEG · 20/09/2026: 58</title></circle><circle cx="764" cy="50.609999999999985" r="4.2" fill="#067647" stroke="white" stroke-width="1.5"><title>PROSEG · 22/09/2026: 91</title></circle><circle cx="941" cy="50.609999999999985" r="4.2" fill="#067647" stroke="white" stroke-width="1.5"><title>PROSEG · 23/09/2026: 91</title></circle><polyline points="56.0,206.3 410.0,114.7 764.0,75.8 941.0,75.8" fill="none" stroke="#2687a3" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></polyline><circle cx="56" cy="206.32999999999998" r="4.2" fill="#2687a3" stroke="white" stroke-width="1.5"><title>AIVX · 18/09/2026: 23</title></circle><circle cx="410" cy="114.72999999999999" r="4.2" fill="#2687a3" stroke="white" stroke-width="1.5"><title>AIVX · 20/09/2026: 63</title></circle><circle cx="764" cy="75.79999999999998" r="4.2" fill="#2687a3" stroke="white" stroke-width="1.5"><title>AIVX · 22/09/2026: 80</title></circle><circle cx="941" cy="75.79999999999998" r="4.2" fill="#2687a3" stroke="white" stroke-width="1.5"><title>AIVX · 23/09/2026: 80</title></circle><polyline points="56.0,87.3 410.0,62.1 764.0,36.9 941.0,36.9" fill="none" stroke="#8bc42a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></polyline><circle cx="56" cy="87.25" r="4.2" fill="#8bc42a" stroke="white" stroke-width="1.5"><title>ELEMENTU · 18/09/2026: 75</title></circle><circle cx="410" cy="62.06" r="4.2" fill="#8bc42a" stroke="white" stroke-width="1.5"><title>ELEMENTU · 20/09/2026: 86</title></circle><circle cx="764" cy="36.870000000000005" r="4.2" fill="#8bc42a" stroke="white" stroke-width="1.5"><title>ELEMENTU · 22/09/2026: 97</title></circle><circle cx="941" cy="36.870000000000005" r="4.2" fill="#8bc42a" stroke="white" stroke-width="1.5"><title>ELEMENTU · 23/09/2026: 97</title></circle></svg></div>
+    <div class="curveGraph" id="curveFornecedorPlot"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" role="img" aria-label="Evolução acumulada por fornecedor em postes" data-curve-hover="1" data-percentage="0"><line x1="56" y1="259" x2="941" y2="259" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="263" text-anchor="end" font-size="11" fill="#72877a">0</text><line x1="56" y1="201.75" x2="941" y2="201.75" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="205.75" text-anchor="end" font-size="11" fill="#72877a">25</text><line x1="56" y1="144.5" x2="941" y2="144.5" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="148.5" text-anchor="end" font-size="11" fill="#72877a">50</text><line x1="56" y1="87.25" x2="941" y2="87.25" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="91.25" text-anchor="end" font-size="11" fill="#72877a">75</text><line x1="56" y1="30" x2="941" y2="30" stroke="#e2eee5" stroke-width="1"></line><text x="47" y="34" text-anchor="end" font-size="11" fill="#72877a">100</text><line x1="56" y1="259" x2="941" y2="259" stroke="#9db5a4"></line><text x="56" y="285" text-anchor="middle" font-size="10" fill="#647b69">18/09</text><text x="410" y="285" text-anchor="middle" font-size="10" fill="#647b69">20/09</text><text x="764" y="285" text-anchor="middle" font-size="10" fill="#647b69">22/09</text><text x="941" y="285" text-anchor="middle" font-size="10" fill="#647b69">23/09</text><polyline points="56.0,155.9 410.0,126.2 764.0,50.6 941.0,50.6" fill="none" stroke="#067647" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="1"></polyline><circle cx="56" cy="155.95" r="4.2" fill="#067647" stroke="white" stroke-width="1.5" opacity="1"><title>PROSEG · 18/09/2026: 45</title></circle><circle cx="410" cy="126.18" r="4.2" fill="#067647" stroke="white" stroke-width="1.5" opacity="1"><title>PROSEG · 20/09/2026: 58</title></circle><circle cx="764" cy="50.609999999999985" r="4.2" fill="#067647" stroke="white" stroke-width="1.5" opacity="1"><title>PROSEG · 22/09/2026: 91</title></circle><circle cx="941" cy="50.609999999999985" r="4.2" fill="#067647" stroke="white" stroke-width="1.5" opacity="1"><title>PROSEG · 23/09/2026: 91</title></circle><polyline points="56.0,206.3 410.0,114.7 764.0,75.8 941.0,75.8" fill="none" stroke="#2687a3" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="1"></polyline><circle cx="56" cy="206.32999999999998" r="4.2" fill="#2687a3" stroke="white" stroke-width="1.5" opacity="1"><title>AIVX · 18/09/2026: 23</title></circle><circle cx="410" cy="114.72999999999999" r="4.2" fill="#2687a3" stroke="white" stroke-width="1.5" opacity="1"><title>AIVX · 20/09/2026: 63</title></circle><circle cx="764" cy="75.79999999999998" r="4.2" fill="#2687a3" stroke="white" stroke-width="1.5" opacity="1"><title>AIVX · 22/09/2026: 80</title></circle><circle cx="941" cy="75.79999999999998" r="4.2" fill="#2687a3" stroke="white" stroke-width="1.5" opacity="1"><title>AIVX · 23/09/2026: 80</title></circle><polyline points="56.0,87.3 410.0,62.1 764.0,36.9 941.0,36.9" fill="none" stroke="#8bc42a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="1"></polyline><circle cx="56" cy="87.25" r="4.2" fill="#8bc42a" stroke="white" stroke-width="1.5" opacity="1"><title>ELEMENTU · 18/09/2026: 75</title></circle><circle cx="410" cy="62.06" r="4.2" fill="#8bc42a" stroke="white" stroke-width="1.5" opacity="1"><title>ELEMENTU · 20/09/2026: 86</title></circle><circle cx="764" cy="36.870000000000005" r="4.2" fill="#8bc42a" stroke="white" stroke-width="1.5" opacity="1"><title>ELEMENTU · 22/09/2026: 97</title></circle><circle cx="941" cy="36.870000000000005" r="4.2" fill="#8bc42a" stroke="white" stroke-width="1.5" opacity="1"><title>ELEMENTU · 23/09/2026: 97</title></circle><line class="curveHoverGuide" x1="56" y1="30" x2="56" y2="259" stroke="#557365" stroke-width="1.3" stroke-dasharray="3 4" visibility="hidden" pointer-events="none"></line><rect class="curveHoverBand" x="56.0" y="30" width="177.0" height="229" fill="transparent" data-date="2026-09-18" data-x="56.0" data-info="%5B%7B%22nome%22%3A%22PROSEG%22%2C%22cor%22%3A%22%23067647%22%2C%22valor%22%3A45%2C%22bruto%22%3Anull%7D%2C%7B%22nome%22%3A%22AIVX%22%2C%22cor%22%3A%22%232687a3%22%2C%22valor%22%3A23%2C%22bruto%22%3Anull%7D%2C%7B%22nome%22%3A%22ELEMENTU%22%2C%22cor%22%3A%22%238bc42a%22%2C%22valor%22%3A75%2C%22bruto%22%3Anull%7D%5D"></rect><rect class="curveHoverBand" x="233.0" y="30" width="354.0" height="229" fill="transparent" data-date="2026-09-20" data-x="410.0" data-info="%5B%7B%22nome%22%3A%22PROSEG%22%2C%22cor%22%3A%22%23067647%22%2C%22valor%22%3A58%2C%22bruto%22%3Anull%7D%2C%7B%22nome%22%3A%22AIVX%22%2C%22cor%22%3A%22%232687a3%22%2C%22valor%22%3A63%2C%22bruto%22%3Anull%7D%2C%7B%22nome%22%3A%22ELEMENTU%22%2C%22cor%22%3A%22%238bc42a%22%2C%22valor%22%3A86%2C%22bruto%22%3Anull%7D%5D"></rect><rect class="curveHoverBand" x="587.0" y="30" width="265.5" height="229" fill="transparent" data-date="2026-09-22" data-x="764.0" data-info="%5B%7B%22nome%22%3A%22PROSEG%22%2C%22cor%22%3A%22%23067647%22%2C%22valor%22%3A91%2C%22bruto%22%3Anull%7D%2C%7B%22nome%22%3A%22AIVX%22%2C%22cor%22%3A%22%232687a3%22%2C%22valor%22%3A80%2C%22bruto%22%3Anull%7D%2C%7B%22nome%22%3A%22ELEMENTU%22%2C%22cor%22%3A%22%238bc42a%22%2C%22valor%22%3A97%2C%22bruto%22%3Anull%7D%5D"></rect><rect class="curveHoverBand" x="852.5" y="30" width="88.5" height="229" fill="transparent" data-date="2026-09-23" data-x="941.0" data-info="%5B%7B%22nome%22%3A%22PROSEG%22%2C%22cor%22%3A%22%23067647%22%2C%22valor%22%3A91%2C%22bruto%22%3Anull%7D%2C%7B%22nome%22%3A%22AIVX%22%2C%22cor%22%3A%22%232687a3%22%2C%22valor%22%3A80%2C%22bruto%22%3Anull%7D%2C%7B%22nome%22%3A%22ELEMENTU%22%2C%22cor%22%3A%22%238bc42a%22%2C%22valor%22%3A97%2C%22bruto%22%3Anull%7D%5D"></rect></svg><div class="curveHoverTooltip"></div></div>
     <div class="curveLegend" id="curveFornecedorLegend"><span><i class="curveKey" style="--key:#067647"></i>PROSEG</span><span><i class="curveKey" style="--key:#2687a3"></i>AIVX</span><span><i class="curveKey" style="--key:#8bc42a"></i>ELEMENTU</span></div>
     <p class="curveNote">Os pontos anteriores a 23/09 correspondem às medições acumuladas disponíveis, não a um registro diário completo de todos os serviços.</p>
   </article>
@@ -2243,14 +2311,14 @@ body.editIsLocked #viewGeral input.edit:not(.releaseAuto),body.editIsLocked #vie
 <section id="viewPadroes" class="emptyView padroesView" role="tabpanel" aria-labelledby="tabPadroes" hidden="">
   <h2 class="padTitle">Padrões de entrada — gestão de energização</h2>
   <p class="padIntro">Acompanhamento individual dos padrões dos Anos 4 e 5, da instalação à energização. Prioridade: 63 padrões do Ano 4. Prazo contratual do Ano 5: 07/10/2027.</p>
-  <div id="padKpis" class="padKpis" aria-label="Indicadores dos padrões de entrada"><div class="padKpi"><small>Total planejado</small><strong>73</strong><span>Anos 4 e 5</span></div><div class="padKpi"><small>Ano 4 · previsto</small><strong>63</strong><span>Prioridade 2026</span></div><div class="padKpi"><small>Ano 4 · instalados</small><strong>0 / 63</strong><span>Confirmados individualmente</span></div><div class="padKpi"><small>Ano 4 · energizados</small><strong>0 / 63</strong><span>Status energizado</span></div><div class="padKpi"><small>Ano 5 · previsto</small><strong>10</strong><span>0 instalado(s) · 0 energizado(s) · 0 reprovação(ões) no total</span></div></div>
+  <div id="padKpis" class="padKpis" aria-label="Indicadores dos padrões de entrada"><div class="padKpi"><small>Total planejado</small><strong>74</strong><span>Anos 4 e 5</span></div><div class="padKpi"><small>Ano 4 · previsto</small><strong>64</strong><span>Prioridade 2026</span></div><div class="padKpi"><small>Ano 4 · instalados</small><strong>39 / 64</strong><span>Confirmados individualmente</span></div><div class="padKpi"><small>Ano 4 · energizados</small><strong>0 / 64</strong><span>Status energizado</span></div><div class="padKpi"><small>Ano 5 · previsto</small><strong>10</strong><span>1 instalado(s) · 0 energizado(s) · 0 reprovação(ões) no total</span></div></div>
   <div class="padChartsGrid">
     <article class="padChartBox">
       <h3>Visão geral dos padrões</h3>
       <p>Panorama consolidado dos 73 padrões: energizados, instalados ainda não energizados e ainda não instalados.</p>
       <div class="padGeneralViz">
-        <div id="padChartGeral" class="padChartSvg" aria-label="Gráfico geral dos padrões"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" role="img" aria-label="Visão geral dos padrões de energia"><circle cx="110" cy="110" r="79" fill="#eef5ef"></circle><circle cx="110" cy="110" r="64" fill="none" stroke="#d9e7dc" stroke-width="30"><title>Não instalados: 73 (100,0%)</title></circle><circle cx="110" cy="110" r="49" fill="#fff"></circle><text x="110" y="115" text-anchor="middle" font-size="27" font-weight="800" fill="#0b5a34">73</text><text x="110" y="135" text-anchor="middle" font-size="12" fill="#728575">padrões</text></svg></div>
-        <div id="padChartGeralLegend" class="padChartLegend" aria-label="Quantidades e percentuais por situação"><span><i style="background:#0a7b45" aria-hidden="true"></i><span class="padLegendText">Energizados</span><b class="padLegendNumber">0 · 0,0%</b></span><span><i style="background:#97c9a6" aria-hidden="true"></i><span class="padLegendText">Instalados não energizados</span><b class="padLegendNumber">0 · 0,0%</b></span><span><i style="background:#d9e7dc" aria-hidden="true"></i><span class="padLegendText">Não instalados</span><b class="padLegendNumber">73 · 100,0%</b></span></div>
+        <div id="padChartGeral" class="padChartSvg" aria-label="Gráfico geral dos padrões"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" role="img" aria-label="Visão geral dos padrões de energia"><circle cx="110" cy="110" r="79" fill="#eef5ef"></circle><path d="M 110.00 31.00 A 79 79 0 1 1 90.09 186.45 L 97.65 157.42 A 49 49 0 1 0 110.00 61.00 Z" fill="#97c9a6"><title>Instalados não energizados: 40 (54,1%)</title></path><path d="M 90.09 186.45 A 79 79 0 0 1 110.00 31.00 L 110.00 61.00 A 49 49 0 0 0 97.65 157.42 Z" fill="#d9e7dc"><title>Não instalados: 34 (45,9%)</title></path><circle cx="110" cy="110" r="49" fill="#fff"></circle><text x="110" y="115" text-anchor="middle" font-size="27" font-weight="800" fill="#0b5a34">74</text><text x="110" y="135" text-anchor="middle" font-size="12" fill="#728575">padrões</text></svg></div>
+        <div id="padChartGeralLegend" class="padChartLegend" aria-label="Quantidades e percentuais por situação"><span><i style="background:#0a7b45" aria-hidden="true"></i><span class="padLegendText">Energizados</span><b class="padLegendNumber">0 · 0,0%</b></span><span><i style="background:#97c9a6" aria-hidden="true"></i><span class="padLegendText">Instalados não energizados</span><b class="padLegendNumber">40 · 54,1%</b></span><span><i style="background:#d9e7dc" aria-hidden="true"></i><span class="padLegendText">Não instalados</span><b class="padLegendNumber">34 · 45,9%</b></span></div>
       </div>
     </article>
     <article class="padChartBox">
@@ -2263,23 +2331,23 @@ body.editIsLocked #viewGeral input.edit:not(.releaseAuto),body.editIsLocked #vie
     </article>
   </div>
   <div class="padSection">
-    <div class="padSectionHead"><div><h3>Distribuição por TH e município</h3><p>Selecione um TH para consultar e atualizar seus padrões individualmente.</p></div><span class="padPill">ANO 4 · PRIORIDADE</span></div>
+    <div class="padSectionHead"><div><h3>Distribuição por TH e município</h3><p>Selecione um TH para consultar e atualizar seus padrões individualmente. O quantitativo previsto pode ser ajustado com a edição desbloqueada.</p></div><span class="padPill">ANO 4 · PRIORIDADE</span></div>
     <div class="padScroll"><table class="padResumoTable"><thead><tr><th>Ano</th><th>TH / Município</th><th>Distribuidora</th><th class="num">Previstos</th><th class="num">Instalados</th><th class="num">Energizados</th><th class="num">Pendentes</th><th>Acompanhamento</th></tr></thead><tbody id="padThBody"><tr class="padTHAtivo"><td><b>Ano 4</b></td><td><b>TH 3-4</b><br>Figueirópolis/TO</td>
-      <td>Energisa TO</td><td class="num">12</td><td class="num">0</td><td class="num">0</td>
+      <td>ENERGISA</td><td class="num"><input class="padPrevistoInput" type="number" min="0" max="999" step="1" value="12" data-pad-previsto="A4-TH34" aria-label="Quantidade prevista TH 3-4"></td><td class="num">0</td><td class="num">0</td>
       <td class="num">12</td><td><button type="button" class="padButton padSelected" data-pad-th="A4-TH34">Em consulta</button></td></tr><tr class=""><td><b>Ano 4</b></td><td><b>TH 4</b><br>Alvorada/TO</td>
-      <td>Energisa TO</td><td class="num">11</td><td class="num">0</td><td class="num">0</td>
+      <td>ENERGISA</td><td class="num"><input class="padPrevistoInput" type="number" min="0" max="999" step="1" value="11" data-pad-previsto="A4-TH4" aria-label="Quantidade prevista TH 4"></td><td class="num">0</td><td class="num">0</td>
       <td class="num">11</td><td><button type="button" class="padButton " data-pad-th="A4-TH4">Gerenciar</button></td></tr><tr class=""><td><b>Ano 4</b></td><td><b>TH 5-6</b><br>Talismã/TO</td>
-      <td>Energisa TO</td><td class="num">9</td><td class="num">0</td><td class="num">0</td>
+      <td>ENERGISA</td><td class="num"><input class="padPrevistoInput" type="number" min="0" max="999" step="1" value="9" data-pad-previsto="A4-TH56" aria-label="Quantidade prevista TH 5-6"></td><td class="num">7</td><td class="num">0</td>
       <td class="num">9</td><td><button type="button" class="padButton " data-pad-th="A4-TH56">Gerenciar</button></td></tr><tr class=""><td><b>Ano 4</b></td><td><b>TH 14</b><br>Uruaçu / Campinorte/GO</td>
-      <td>Equatorial GO</td><td class="num">16</td><td class="num">0</td><td class="num">0</td>
-      <td class="num">16</td><td><button type="button" class="padButton " data-pad-th="A4-TH14">Gerenciar</button></td></tr><tr class=""><td><b>Ano 4</b></td><td><b>TH 20-21</b><br>Rianápolis / Rialma/GO</td>
-      <td>A confirmar</td><td class="num">15</td><td class="num">0</td><td class="num">0</td>
+      <td>EQUATORIAL</td><td class="num"><input class="padPrevistoInput" type="number" min="0" max="999" step="1" value="17" data-pad-previsto="A4-TH14" aria-label="Quantidade prevista TH 14"></td><td class="num">17</td><td class="num">0</td>
+      <td class="num">17</td><td><button type="button" class="padButton " data-pad-th="A4-TH14">Gerenciar</button></td></tr><tr class=""><td><b>Ano 4</b></td><td><b>TH 20-21</b><br>Rianápolis / Rialma/GO</td>
+      <td>CHESP</td><td class="num"><input class="padPrevistoInput" type="number" min="0" max="999" step="1" value="15" data-pad-previsto="A4-TH2021" aria-label="Quantidade prevista TH 20-21"></td><td class="num">15</td><td class="num">0</td>
       <td class="num">15</td><td><button type="button" class="padButton " data-pad-th="A4-TH2021">Gerenciar</button></td></tr><tr class=""><td><b>Ano 5</b></td><td><b>TH 02</b><br>Cariri do Tocantins/TO</td>
-      <td>Energisa TO</td><td class="num">5</td><td class="num">0</td><td class="num">0</td>
+      <td>ENERGISA</td><td class="num"><input class="padPrevistoInput" type="number" min="0" max="999" step="1" value="5" data-pad-previsto="A5-TH02" aria-label="Quantidade prevista TH 02"></td><td class="num">0</td><td class="num">0</td>
       <td class="num">5</td><td><button type="button" class="padButton " data-pad-th="A5-TH02">Gerenciar</button></td></tr><tr class=""><td><b>Ano 5</b></td><td><b>TH 18-19</b><br>Rialma/GO</td>
-      <td>A confirmar</td><td class="num">4</td><td class="num">0</td><td class="num">0</td>
+      <td>CHESP</td><td class="num"><input class="padPrevistoInput" type="number" min="0" max="999" step="1" value="4" data-pad-previsto="A5-TH1819" aria-label="Quantidade prevista TH 18-19"></td><td class="num">1</td><td class="num">0</td>
       <td class="num">4</td><td><button type="button" class="padButton " data-pad-th="A5-TH1819">Gerenciar</button></td></tr><tr class=""><td><b>Ano 5</b></td><td><b>TH 22</b><br>Rianápolis/GO</td>
-      <td>A confirmar</td><td class="num">1</td><td class="num">0</td><td class="num">0</td>
+      <td>CHESP</td><td class="num"><input class="padPrevistoInput" type="number" min="0" max="999" step="1" value="1" data-pad-previsto="A5-TH22" aria-label="Quantidade prevista TH 22"></td><td class="num">0</td><td class="num">0</td>
       <td class="num">1</td><td><button type="button" class="padButton " data-pad-th="A5-TH22">Gerenciar</button></td></tr></tbody></table></div>
   </div>
   <div class="padSection">
@@ -2424,7 +2492,7 @@ body.editIsLocked #viewGeral input.edit:not(.releaseAuto),body.editIsLocked #vie
     </tr></tbody></table></div>
     <div id="padDetalhes" aria-live="polite"></div>
   </div>
-  <p class="padNote padWarning">Distribuidora a confirmar nos THs de Rianápolis/Rialma: a relação recebida informa Equatorial GO e também menciona CHESP. Os registros desses THs ficam identificados como “A confirmar”, até a validação, sem atribuição definitiva.</p>
+  <p class="padNote"><b>Distribuidoras de referência:</b> Tocantins — ENERGISA; Uruaçu e Campinorte/GO — EQUATORIAL; Rialma e Rianápolis/GO — CHESP.</p>
 </section>
 
 <footer class="footerTools">
@@ -2459,23 +2527,23 @@ body.editIsLocked #viewGeral input.edit:not(.releaseAuto),body.editIsLocked #vie
     <span id="editSecurityStatus" class="editSecurityState isUnlocked" role="status" aria-live="polite">🔓 Edição habilitada</span>
   </div>
   <section id="editSecurityPanel" class="editSecurityPanel" aria-label="Configuração da senha de edição" hidden="">
-    <h3 id="editPassTitle">Definir senha de edição</h3>
-    <p id="editPassDescription">Crie uma senha para habilitar as alterações em todas as abas. Depois, baixe o HTML protegido para publicá-lo.</p>
+    <h3 id="editPassTitle">Desbloquear edição</h3>
+    <p id="editPassDescription">Informe sua senha para habilitar as alterações em todas as abas.</p>
     <form id="editPassForm" class="editPassForm" autocomplete="off">
-      <label id="editCurrentWrap" class="editPassField" hidden="">Senha de edição
+      <label id="editCurrentWrap" class="editPassField">Senha de edição
         <input id="editCurrentPass" type="password" autocomplete="current-password" minlength="10" placeholder="Digite sua senha">
       </label>
-      <label id="editNewWrap" class="editPassField">Nova senha
+      <label id="editNewWrap" class="editPassField" hidden="">Nova senha
         <input id="editNewPass" type="password" autocomplete="new-password" minlength="10" placeholder="Mínimo de 10 caracteres">
       </label>
-      <label id="editConfirmWrap" class="editPassField">Confirme a nova senha
+      <label id="editConfirmWrap" class="editPassField" hidden="">Confirme a nova senha
         <input id="editConfirmPass" type="password" autocomplete="new-password" minlength="10" placeholder="Repita a senha">
       </label>
-      <button type="submit" id="editPassSubmit">Salvar senha</button>
+      <button type="submit" id="editPassSubmit">Desbloquear</button>
       <button type="button" id="editPassCancel">Cancelar</button>
     </form>
     <div id="editPassFeedback" class="editPassFeedback" role="alert" aria-live="polite" style="color: rgb(8, 118, 69);"></div>
-    <p class="editPassHint" id="editPassHint">Senha definida. Use “Baixar HTML protegido” e publique o arquivo resultante para exigir a senha nos demais navegadores. A proteção do HTML é apenas de interface.</p>
+    <p class="editPassHint" id="editPassHint">A senha restringe os controles de edição do HTML, mas não substitui autenticação no servidor.</p>
   </section>
 </footer>
 
@@ -2522,7 +2590,7 @@ function editMostrarAviso(msg,erro=false){
 function editAplicarBloqueio(){
   const locked=!EDIT_DESBLOQUEADO;
   document.body.classList.toggle('editIsLocked',locked);
-  const campos=document.querySelectorAll('#viewGeral input.edit, #viewGeral select.status, #viewGeral textarea.obsEdit, #kmSettings input, #viewPadroes [data-pad-field], .footerControls select, .footerControls input:not([type=hidden])');
+  const campos=document.querySelectorAll('#viewGeral input.edit, #viewGeral select.status, #viewGeral textarea.obsEdit, #kmSettings input, #viewPadroes [data-pad-field], #viewPadroes [data-pad-previsto], .footerControls select, .footerControls input:not([type=hidden])');
   campos.forEach(el=>{el.disabled=locked || el.classList.contains('releaseAuto');});
   const importEl=document.getElementById('backupFile');
   if(importEl)importEl.disabled=locked;
@@ -3246,12 +3314,12 @@ function cDatasMedidas(){
   return [...new Set([...hist,...lum,...auto,...(ativa>"2026-09-22"?[ativa]:[])])]
     .filter(d=>/^\d{4}-\d{2}-\d{2}$/.test(d)).sort();
 }
-function cLinhaSVG(series,{percentage=false,deadlines=false,alt="Curva de evolução",xDates=null}={}){
+function cLinhaSVG(series,{percentage=false,deadlines=false,alt="Curva de evolução",xDates=null,height=300}={}){
   const valid=series.flatMap(s=>s.valores.filter(d=>d.valor!==null && Number.isFinite(+d.valor)));
   if(!valid.length)return '<p class="curveNote">Ainda não há medições históricas para este gráfico.</p>';
   const datas=[...new Set([...(xDates||valid.map(x=>x.data)),...(deadlines?["2026-09-30","2026-10-08"]:[])])].sort();
   const first=cDia(datas[0]),last=cDia(datas[datas.length-1]);
-  const w=960,h=300,L=56,R=19,T=30,B=41;
+  const w=960,h=height,L=56,R=19,T=30,B=41;
   const x=d=>L+(cDia(d)-first)/Math.max(86400000,last-first)*(w-L-R);
   const maxValor=percentage?100:Math.max(1,Math.ceil(Math.max(...valid.map(v=>+v.valor))/20)*20);
   const y=v=>h-B-cNum(v)/maxValor*(h-T-B);
@@ -3271,12 +3339,62 @@ function cLinhaSVG(series,{percentage=false,deadlines=false,alt="Curva de evolu�
     const points=s.valores.filter(v=>v.valor!==null&&Number.isFinite(+v.valor)).sort((a,b)=>a.data.localeCompare(b.data));
     if(!points.length)return "";
     const coords=points.map(v=>`${x(v.data).toFixed(1)},${y(v.valor).toFixed(1)}`);
-    const path=coords.length===1?"":`<polyline points="${coords.join(" ")}" fill="none" stroke="${s.cor}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>`;
-    const dots=points.map(v=>`<circle cx="${x(v.data)}" cy="${y(v.valor)}" r="4.2" fill="${s.cor}" stroke="white" stroke-width="1.5"><title>${escHtml(s.nome)} · ${escHtml(dataCurvasBR(v.data))}: ${percentage?(+v.valor).toFixed(1)+"%":fmt(v.valor)}${v.bruto!==undefined?` (${fmt(v.bruto)} un.)`:""}</title></circle>`).join("");
+    const largura=s.width||3, tracejado=s.dash?` stroke-dasharray="${s.dash}"`:"", opacidade=s.opacity===undefined?1:s.opacity;
+    const path=coords.length===1?"":`<polyline points="${coords.join(" ")}" fill="none" stroke="${s.cor}" stroke-width="${largura}"${tracejado} stroke-linejoin="round" stroke-linecap="round" opacity="${opacidade}"/>`;
+    const dots=s.dots===false?"":points.map(v=>`<circle cx="${x(v.data)}" cy="${y(v.valor)}" r="4.2" fill="${s.cor}" stroke="white" stroke-width="1.5" opacity="${opacidade}"><title>${escHtml(s.nome)} · ${escHtml(dataCurvasBR(v.data))}: ${percentage?(+v.valor).toFixed(1)+"%":fmt(v.valor)}${v.bruto!==undefined?` (${fmt(v.bruto)} un.)`:""}</title></circle>`).join("");
     return path+dots;
   }).join("");
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" role="img" aria-label="${escHtml(alt)}">${ticks}${alvo}${prazos}<line x1="${L}" y1="${h-B}" x2="${w-R}" y2="${h-B}" stroke="#9db5a4"/>${labels}${plot}</svg>`;
+  const hoverDates=[...new Set(series.flatMap(s=>s.valores.filter(v=>v.valor!==null&&Number.isFinite(+v.valor)).map(v=>v.data)))].sort();
+  const hoverBands=hoverDates.map((d,i)=>{
+    const xx=x(d), prev=i?x(hoverDates[i-1]):L, next=i<hoverDates.length-1?x(hoverDates[i+1]):w-R;
+    const x0=i?(prev+xx)/2:L, x1=i<hoverDates.length-1?(xx+next)/2:w-R;
+    const info=series.map(s=>{
+      const v=s.valores.find(p=>p.data===d && p.valor!==null && Number.isFinite(+p.valor));
+      return v?{nome:s.nome,cor:s.cor,valor:+v.valor,bruto:v.bruto===undefined?null:+v.bruto}:null;
+    }).filter(Boolean);
+    return `<rect class="curveHoverBand" x="${x0.toFixed(1)}" y="${T}" width="${Math.max(1,x1-x0).toFixed(1)}" height="${h-T-B}" fill="transparent" data-date="${d}" data-x="${xx.toFixed(1)}" data-info="${encodeURIComponent(JSON.stringify(info))}"/>`;
+  }).join("");
+  const hoverGuide=`<line class="curveHoverGuide" x1="${L}" y1="${T}" x2="${L}" y2="${h-B}" stroke="#557365" stroke-width="1.3" stroke-dasharray="3 4" visibility="hidden" pointer-events="none"/>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" role="img" aria-label="${escHtml(alt)}" data-curve-hover="1" data-percentage="${percentage?1:0}">${ticks}${alvo}${prazos}<line x1="${L}" y1="${h-B}" x2="${w-R}" y2="${h-B}" stroke="#9db5a4"/>${labels}${plot}${hoverGuide}${hoverBands}</svg>`;
 }
+function initCurveHover(container){
+  if(!container)return;
+  const svg=container.querySelector('svg[data-curve-hover="1"]');
+  if(!svg)return;
+  let tip=container.querySelector('.curveHoverTooltip');
+  if(!tip){tip=document.createElement('div');tip.className='curveHoverTooltip';container.appendChild(tip);}
+  const guide=svg.querySelector('.curveHoverGuide');
+  const percentual=svg.dataset.percentage==='1';
+  const mostrar=(ev,band)=>{
+    let info=[];try{info=JSON.parse(decodeURIComponent(band.dataset.info||''))}catch(e){}
+    const data=band.dataset.date||'';
+    if(!info.length)return;
+    const marco=data==='2026-09-30'?'Pactuado':data==='2026-10-08'?'Prazo contratual':'';
+    tip.innerHTML=`<div class="chtDate"><span>${escHtml(dataCurvasBR(data))}</span>${marco?`<span class="chtMark">${marco}</span>`:''}</div>`+info.map(v=>{
+      const valor=percentual?`${Number(v.valor).toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})}%`:Number(v.valor).toLocaleString('pt-BR',{maximumFractionDigits:1});
+      const bruto=v.bruto!==null&&Number.isFinite(Number(v.bruto))?`<small>${fmt(v.bruto)} un.</small>`:'';
+      return `<div class="chtRow"><i class="chtSwatch" style="--cht:${escHtml(v.cor||'#6f8178')}"></i><span class="chtName">${escHtml(v.nome)}</span><span class="chtVal">${valor}${bruto}</span></div>`;
+    }).join('');
+    tip.classList.add('show');
+    if(guide){const gx=band.dataset.x||56;guide.setAttribute('x1',gx);guide.setAttribute('x2',gx);guide.setAttribute('visibility','visible');}
+    const rect=container.getBoundingClientRect();
+    const scrollX=container.scrollLeft||0, scrollY=container.scrollTop||0;
+    let left=ev.clientX-rect.left+scrollX+14, top=ev.clientY-rect.top+scrollY+14;
+    const tw=tip.offsetWidth||280, th=tip.offsetHeight||150;
+    const maxLeft=scrollX+container.clientWidth-tw-8;
+    if(left>maxLeft)left=Math.max(scrollX+8,ev.clientX-rect.left+scrollX-tw-14);
+    const maxTop=scrollY+container.clientHeight-th-8;
+    if(top>maxTop)top=Math.max(scrollY+8,maxTop);
+    tip.style.left=`${Math.max(scrollX+8,left)}px`;tip.style.top=`${Math.max(scrollY+8,top)}px`;
+  };
+  svg.querySelectorAll('.curveHoverBand').forEach(b=>{
+    b.addEventListener('pointerenter',ev=>mostrar(ev,b));
+    b.addEventListener('pointermove',ev=>mostrar(ev,b));
+  });
+  svg.addEventListener('pointerleave',()=>{tip.classList.remove('show');if(guide)guide.setAttribute('visibility','hidden');});
+}
+function initCurveHovers(){document.querySelectorAll('#viewGraficos .curveGraph').forEach(initCurveHover);}
+
 function cEscopoSVG(f1,f2,y5){
   // A composição representa um único quantitativo por fase, e não a soma
   // de postes com luminárias. Os dois quantitativos são informados na legenda.
@@ -3369,18 +3487,106 @@ function renderCurvasDashboard(){
     return {data,valor:bruto===null||!denom?null:Math.min(100,100*bruto/denom),bruto};
   });
   const dataAtiva=dataDiariaSelecionada();
-  const diasAte=alvo=>Math.round((cDia(alvo)-cDia(dataAtiva))/86400000);
-  const ritmo=(saldo,dias)=>dias>0?`${(saldo/dias).toLocaleString("pt-BR",{minimumFractionDigits:1,maximumFractionDigits:1})} un./dia`:"Prazo encerrado";
+  const PRAZO_PACTUADO='2026-09-30', PRAZO_CONTRATUAL='2026-10-08';
+  const inicioSerie=datas.length?datas[0]:dataAtiva;
+  const diasEntre=(a,b)=>Math.max(0,Math.round((cDia(b)-cDia(a))/86400000));
+  const diasCurvaContrato=Math.max(1,diasEntre(dataAtiva,PRAZO_CONTRATUAL));
+  const ritmoValor=(saldo,dias)=>dias>0?Math.max(0,saldo)/dias:0;
+  const ritmoTxt=v=>`${v.toLocaleString("pt-BR",{minimumFractionDigits:1,maximumFractionDigits:1})} un./dia`;
+  const empresasAtivas=[...new Set(linhas.filter(r=>cNum(r[8])>0).map(r=>r[0]))];
+  const qtdContratadas=Math.max(1,empresasAtivas.length || (filtro?1:0));
+  const minimoPorContratada=30;
+  const minimoTotalDia=minimoPorContratada*qtdContratadas;
+  const saldoP=Math.max(0,f1.p-ex.p), saldoL=Math.max(0,f1.l-ex.l);
+  const recuperaP=ritmoValor(saldoP,diasCurvaContrato), recuperaL=ritmoValor(saldoL,diasCurvaContrato);
+
+  const datasAte=(inicio,fim)=>{
+    const out=[];
+    for(let t=cDia(inicio);t<=cDia(fim);t+=86400000)out.push(new Date(t).toISOString().slice(0,10));
+    return out;
+  };
+  const datasContrato=datasAte(inicioSerie,PRAZO_CONTRATUAL);
+  const datasFuturas=datasAte(dataAtiva,PRAZO_CONTRATUAL);
+
+  // Mínimo contratual acumulado: começa no início da série disponível e avança
+  // 30 postes + 30 luminárias por dia para cada contratada do filtro atual.
+  const minimoContratual=(()=>{
+    const denom=Math.max(1,f1.p,f1.l);
+    return datasContrato.map((data,i)=>{
+      const bruto=Math.min(denom,minimoTotalDia*i);
+      return {data,valor:Math.min(100,100*bruto/denom),bruto};
+    });
+  })();
+
+  // Ritmo necessário: parte do realizado atual e chega exatamente a 100% em 08/10.
+  const curvaNecessaria=(atual,denom,taxa)=>datasFuturas.map((data,i)=>{
+    const bruto=Math.min(cNum(denom),cNum(atual)+taxa*i);
+    return {data,valor:denom?Math.min(100,100*bruto/denom):0,bruto};
+  });
+
+  // Média histórica diária baseada nos apontamentos efetivamente registrados antes
+  // da data ativa. A data corrente é excluída por poder estar em andamento.
+  const mediaHistorica=(metrica)=>{
+    const campo=metrica==='luminarias'?'quantidadeLuminarias':'quantidade';
+    const regs=HIST.registros.filter(r=>r.data<dataAtiva && (!filtro||r.empresa===filtro) && r[campo]!==undefined && r[campo]!==null);
+    const ds=[...new Set(regs.map(r=>r.data))].sort();
+    if(!ds.length)return null;
+    const total=ds.reduce((s,d)=>s+regs.filter(r=>r.data===d).reduce((a,r)=>a+cNum(r[campo]),0),0);
+    return total/ds.length;
+  };
+  const mediaP=mediaHistorica('postes'), mediaL=mediaHistorica('luminarias');
+  const curvaMedia=(atual,denom,taxa)=>taxa===null?[]:datasFuturas.map((data,i)=>{
+    const bruto=Math.min(cNum(denom),cNum(atual)+cNum(taxa)*i);
+    return {data,valor:denom?Math.min(100,100*bruto/denom):0,bruto};
+  });
+  const projFimP=mediaP===null?null:Math.min(f1.p,ex.p+mediaP*diasCurvaContrato);
+  const projFimL=mediaL===null?null:Math.min(f1.l,ex.l+mediaL*diasCurvaContrato);
+  const projPctP=projFimP===null?null:pct(projFimP,f1.p);
+  const projPctL=projFimL===null?null:pct(projFimL,f1.l);
+
   const kmMeta=linhas.reduce((a,r)=>a+kmLinearLinha(r,r[8],r[8]),0),kmFeito=linhas.reduce((a,r)=>a+kmLinearLinha(r,r[9],r[10]),0);
-  $('curveFase1Stats').innerHTML=cStat('Postes · executado / liberado',`${fmt(ex.p)} / ${fmt(f1.p)}`,`${pct(ex.p,f1.p).toFixed(1)}% · saldo ${fmt(Math.max(0,f1.p-ex.p))}`)
-    +cStat('Luminárias · executado / liberado',`${fmt(ex.l)} / ${fmt(f1.l)}`,`${pct(ex.l,f1.l).toFixed(1)}% · saldo ${fmt(Math.max(0,f1.l-ex.l))}`)
-    +cStat('KM linear · executado / liberado',`${fmtKm(kmFeito)} / ${fmtKm(kmMeta)} km`,`Critério de KM selecionado no painel`)
-    +cStat('Ritmo até 30/09 · postes',ritmo(Math.max(0,f1.p-ex.p),diasAte('2026-09-30')),'Referência matemática; não é previsão');
-  $('curveFase1Plot').innerHTML=cLinhaSVG([
-    {nome:'Postes · Fase 1',cor:CURVE_COLORS.postes,valores:seriePerc('postes',f1.p)},
-    {nome:'Luminárias · Fase 1',cor:CURVE_COLORS.luminarias,valores:seriePerc('luminarias',f1.l)}
-  ],{percentage:true,deadlines:true,alt:'Curva da Fase 1 Fator D, executado sobre liberado, com prazos em 30 de setembro e 8 de outubro'});
-  $('curveFase1Note').textContent=`Meta representada: escopo liberado atual da Fase 1. Prazo pactuado: 30/09/2026; prazo contratual informado no painel: 08/10/2026. Para 30/09, o ritmo matemático restante é ${ritmo(Math.max(0,f1.p-ex.p),diasAte('2026-09-30'))} de postes e ${ritmo(Math.max(0,f1.l-ex.l),diasAte('2026-09-30'))} de luminárias. Não há curva prevista por data aprovada para comparar o realizado.`;
+  $('curveFase1Stats').innerHTML=cStat('Postes · executado / liberado',`${fmt(ex.p)} / ${fmt(f1.p)}`,`${pct(ex.p,f1.p).toFixed(1)}% · saldo ${fmt(saldoP)}`)
+    +cStat('Luminárias · executado / liberado',`${fmt(ex.l)} / ${fmt(f1.l)}`,`${pct(ex.l,f1.l).toFixed(1)}% · saldo ${fmt(saldoL)}`)
+    +cStat('Mínimo contratual',`${fmt(minimoTotalDia)} P + ${fmt(minimoTotalDia)} L/dia`,`${qtdContratadas} contratada(s) × 30 por item/dia`)
+    +cStat('Necessário até 08/10',`${ritmoTxt(recuperaP)} P`,`${ritmoTxt(recuperaL)} L · ritmo linear até 100%`)
+    +cStat('Média realizada',`${mediaP===null?'—':mediaP.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})} P/dia`,`${mediaL===null?'—':mediaL.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})} L/dia`)
+    +cStat('Projeção em 08/10',`${projPctP===null?'—':projPctP.toFixed(1)+'%'} P`,`${projPctL===null?'—':projPctL.toFixed(1)+'%'} L pela média atual`);
+
+  const seriesFase1=[
+    {nome:'Realizado · postes',cor:'#006b3c',width:3.6,valores:seriePerc('postes',f1.p)},
+    {nome:'Realizado · luminárias',cor:'#78b900',width:3.6,valores:seriePerc('luminarias',f1.l)},
+    {nome:`Mínimo contratual acumulado · ${fmt(minimoTotalDia)}/dia`,cor:'#176f9d',dash:'10 6',width:2.5,dots:false,opacity:.95,valores:minimoContratual},
+    {nome:`Necessário ao prazo · postes · ${recuperaP.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})}/dia`,cor:'#d97706',dash:'6 4',width:2.7,dots:false,opacity:.98,valores:curvaNecessaria(ex.p,f1.p,recuperaP)},
+    {nome:`Necessário ao prazo · luminárias · ${recuperaL.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})}/dia`,cor:'#c2410c',dash:'6 4',width:2.7,dots:false,opacity:.98,valores:curvaNecessaria(ex.l,f1.l,recuperaL)}
+  ];
+  if(mediaP!==null)seriesFase1.push({nome:`Projeção pela média · postes · ${mediaP.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})}/dia`,cor:'#5b6fb5',dash:'2 6',width:2.5,dots:false,opacity:.95,valores:curvaMedia(ex.p,f1.p,mediaP)});
+  if(mediaL!==null)seriesFase1.push({nome:`Projeção pela média · luminárias · ${mediaL.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})}/dia`,cor:'#8b5fa8',dash:'2 6',width:2.5,dots:false,opacity:.95,valores:curvaMedia(ex.l,f1.l,mediaL)});
+
+  $('curveFase1Plot').innerHTML=cLinhaSVG(seriesFase1,{percentage:true,deadlines:true,height:345,alt:'Fase 1 Fator D: realizado, mínimo contratual acumulado, ritmo necessário para o prazo e projeção futura pela média executada'});
+  const legend=$('curveFase1Legend');
+  if(legend)legend.innerHTML=`
+    <div class="legendGroup"><div class="legendTitle">Realizado acumulado</div>
+      <div class="legendItem"><i class="curveKey" style="--key:#006b3c"></i>Postes executados</div>
+      <div class="legendItem"><i class="curveKey" style="--key:#78b900"></i>Luminárias executadas</div>
+    </div>
+    <div class="legendGroup"><div class="legendTitle">Mínimo contratual</div>
+      <div class="legendItem"><i class="curveKey longdash" style="--key:#176f9d"></i>${fmt(minimoTotalDia)} por dia / item</div>
+      <small>Parte do início da série (${cDataCurta(inicioSerie)}) e acumula 30 por contratada/dia.</small>
+    </div>
+    <div class="legendGroup"><div class="legendTitle">Ritmo necessário até 08/10</div>
+      <div class="legendItem"><i class="curveKey dashed" style="--key:#d97706"></i>Postes · ${recuperaP.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})}/dia</div>
+      <div class="legendItem"><i class="curveKey dashed" style="--key:#c2410c"></i>Luminárias · ${recuperaL.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})}/dia</div>
+    </div>
+    <div class="legendGroup"><div class="legendTitle">Projeção pela média realizada</div>
+      <div class="legendItem"><i class="curveKey dotted" style="--key:#5b6fb5"></i>Postes · ${mediaP===null?'sem base':mediaP.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})+'/dia'}</div>
+      <div class="legendItem"><i class="curveKey dotted" style="--key:#8b5fa8"></i>Luminárias · ${mediaL===null?'sem base':mediaL.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})+'/dia'}</div>
+    </div>
+    <div class="legendGroup"><div class="legendTitle">Marcos e meta</div>
+      <div class="legendItem"><i class="curveKey dashed" style="--key:#91a39a"></i>100% do escopo liberado</div>
+      <div class="legendItem"><i class="curveKey dashed" style="--key:#c99428"></i>Pactuado · 30/09</div>
+      <div class="legendItem"><i class="curveKey dashed" style="--key:#d97940"></i>Contratual · 08/10</div>
+    </div>`;
+  $('curveFase1Note').textContent=`Leitura do gráfico: o mínimo contratual acumula ${fmt(minimoTotalDia)} postes e ${fmt(minimoTotalDia)} luminárias por dia no filtro atual, desde ${dataCurvasBR(inicioSerie)}. O ritmo necessário parte do realizado atual e alcança 100% em 08/10/2026. A projeção futura usa a média diária dos apontamentos concluídos anteriores à data selecionada${mediaP===null||mediaL===null?' quando existe histórico suficiente':''}. No ritmo médio atual, a projeção para 08/10 é ${projPctP===null?'sem base para postes':projPctP.toFixed(1)+'% de postes'} e ${projPctL===null?'sem base para luminárias':projPctL.toFixed(1)+'% de luminárias'}.`;
   $('curveGeralStats').innerHTML=cStat('Ano 4 · postes / luminárias',`${fmt(y4.p)} / ${fmt(y4.l)}`,'Escopo cadastrado')
     +cStat('Ano 5 · postes / luminárias',`${fmt(y5.p)} / ${fmt(y5.l)}`,'Escopo previsto, sem produção apontada')
     +cStat('Total Anos 4 + 5',`${fmt(todos.p)} / ${fmt(todos.l)}`,'Postes / luminárias previstos');
@@ -3401,6 +3607,7 @@ function renderCurvasDashboard(){
     const ativo=btn.dataset.curveMetric===curvaMetrica;
     btn.classList.toggle('active',ativo);btn.setAttribute('aria-pressed',String(ativo));
   });
+  initCurveHovers();
 }
 function initMetricasCurvas(){
   document.querySelectorAll('[data-curve-metric]').forEach(btn=>btn.addEventListener('click',()=>{
@@ -3460,11 +3667,6 @@ function render(){
       : `<input class=edit type=number min=0 max="${r[3]||999999999}" value="${r[2]}" onchange="updP(${i},this.value)"> ${unit}`;
     return `<tr><td>${r[0]}</td><td><b>${r[1]}</b></td><td>${r[4]}</td><td class=num>${execCell}</td><td class=num>${fmt(r[3])} ${unit}</td><td><div class=bar><i style="width:${v}%"></i></div>${v.toFixed(1)}%</td></tr>`;
   }).join("");
-
-  $("composition").innerHTML=
-    `<tr><td><b>Fase 1</b></td><td class=num>${fmt(f1.p)}</td><td class=num>${fmt(f1.l)}</td><td class=num><b>${fmtKm(kmFase1.previsto)} km</b></td><td>Quantitativos liberados do Ano 4</td></tr>
-     <tr><td><b>Fase 2</b></td><td class=num>${fmt(f2.p)}</td><td class=num>${fmt(f2.l)}</td><td class=num><b>${fmtKm(kmFase2.previsto)} km</b></td><td>Saldo previsto ainda não liberado</td></tr>
-     <tr><td><b>Fase 3</b></td><td class=num>${fmt(y5.p)}</td><td class=num>${fmt(y5.l)}</td><td class=num><b>${fmtKm(kmFase3Previsto)} km</b></td><td>Ano 5 completo</td></tr>`;
 
   const ff=rowsFiltered();
   $("fronts").innerHTML=ff.map(r=>{
@@ -3710,18 +3912,45 @@ function exportPDF(){
 /* ===== PADRÕES DE ENERGIA: CONTROLE INDIVIDUAL ===== */
 const PAD_KEY="gestao_iluminacao_padroes_energia_v1";
 const PAD_THS=[
-  {ano:4,key:"A4-TH34",th:"TH 3-4",municipio:"Figueirópolis/TO",qtd:12,distribuidora:"Energisa TO"},
-  {ano:4,key:"A4-TH4",th:"TH 4",municipio:"Alvorada/TO",qtd:11,distribuidora:"Energisa TO"},
-  {ano:4,key:"A4-TH56",th:"TH 5-6",municipio:"Talismã/TO",qtd:9,distribuidora:"Energisa TO"},
-  {ano:4,key:"A4-TH14",th:"TH 14",municipio:"Uruaçu / Campinorte/GO",qtd:16,distribuidora:"Equatorial GO"},
-  {ano:4,key:"A4-TH2021",th:"TH 20-21",municipio:"Rianápolis / Rialma/GO",qtd:15,distribuidora:"A confirmar"},
-  {ano:5,key:"A5-TH02",th:"TH 02",municipio:"Cariri do Tocantins/TO",qtd:5,distribuidora:"Energisa TO"},
-  {ano:5,key:"A5-TH1819",th:"TH 18-19",municipio:"Rialma/GO",qtd:4,distribuidora:"A confirmar"},
-  {ano:5,key:"A5-TH22",th:"TH 22",municipio:"Rianápolis/GO",qtd:1,distribuidora:"A confirmar"}
+  {ano:4,key:"A4-TH34",th:"TH 3-4",municipio:"Figueirópolis/TO",qtd:12,distribuidora:"ENERGISA"},
+  {ano:4,key:"A4-TH4",th:"TH 4",municipio:"Alvorada/TO",qtd:11,distribuidora:"ENERGISA"},
+  {ano:4,key:"A4-TH56",th:"TH 5-6",municipio:"Talismã/TO",qtd:9,distribuidora:"ENERGISA"},
+  {ano:4,key:"A4-TH14",th:"TH 14",municipio:"Uruaçu / Campinorte/GO",qtd:17,distribuidora:"EQUATORIAL"},
+  {ano:4,key:"A4-TH2021",th:"TH 20-21",municipio:"Rianápolis / Rialma/GO",qtd:15,distribuidora:"CHESP"},
+  {ano:5,key:"A5-TH02",th:"TH 02",municipio:"Cariri do Tocantins/TO",qtd:5,distribuidora:"ENERGISA"},
+  {ano:5,key:"A5-TH1819",th:"TH 18-19",municipio:"Rialma/GO",qtd:4,distribuidora:"CHESP"},
+  {ano:5,key:"A5-TH22",th:"TH 22",municipio:"Rianápolis/GO",qtd:1,distribuidora:"CHESP"}
 ];
+const PAD_QTD_DEFAULT=Object.fromEntries(PAD_THS.map(th=>[th.key,th.qtd]));
+function padQuantidadesAtuais(){return Object.fromEntries(PAD_THS.map(th=>[th.key,Math.max(0,Math.round(+th.qtd||0))]));}
+function padAplicarQuantidades(qtds){
+  if(!qtds || typeof qtds!=="object")return;
+  PAD_THS.forEach(th=>{ if(Object.prototype.hasOwnProperty.call(qtds,th.key)){ const n=Math.round(Number(qtds[th.key])); if(Number.isFinite(n)&&n>=0&&n<=999)th.qtd=n; } });
+}
+function padRestaurarQuantidadesDefault(){PAD_THS.forEach(th=>th.qtd=PAD_QTD_DEFAULT[th.key]);}
+
 const PAD_STATUS=["Não informado","Não iniciado","Em instalação","Instalado","Solicitação protocolada","Em análise","Aprovado","Reprovado","Aguardando energização","Energizado"];
 const PAD_ANALISE=["Não informado","Aguardando análise","Em análise","Aprovado","Reprovado"];
-const PAD_DIST=["A confirmar","Energisa TO","Equatorial GO","CHESP"];
+const PAD_DIST=["ENERGISA","EQUATORIAL","CHESP"];
+function padDistribuidoraPadrao(thKey){
+  const th=PAD_THS.find(x=>x.key===thKey);
+  return th?th.distribuidora:"";
+}
+function padNormalizarDistribuidora(valor,thKey){
+  const v=String(valor||"").trim();
+  const alias={
+    "ENERGISA TO":"ENERGISA",
+    "Energisa TO":"ENERGISA",
+    "ENERGISA":"ENERGISA",
+    "EQUATORIAL GO":"EQUATORIAL",
+    "Equatorial GO":"EQUATORIAL",
+    "EQUATORIAL":"EQUATORIAL",
+    "CHESP":"CHESP"
+  };
+  const normal=alias[v]||v;
+  if(!normal || normal==="A confirmar")return padDistribuidoraPadrao(thKey);
+  return PAD_DIST.includes(normal)?normal:padDistribuidoraPadrao(thKey);
+}
 function padroesBase(){
   return PAD_THS.flatMap(th=>Array.from({length:th.qtd},(_,i)=>({
     id:`PE-${th.key}-${String(i+1).padStart(2,"0")}`,
@@ -3741,6 +3970,7 @@ function padNormalizarRegistros(anteriores){
     editaveis.forEach(k=>{
       if(Object.prototype.hasOwnProperty.call(salvo,k) && (typeof salvo[k]==="string" || (k==="instalado" && typeof salvo[k]==="boolean")))out[k]=salvo[k];
     });
+    out.distribuidora=padNormalizarDistribuidora(out.distribuidora,out.thKey);
     if(out.status==="Energizado")out.instalado=true;
     return out;
   });
@@ -3748,7 +3978,11 @@ function padNormalizarRegistros(anteriores){
 function padCarregar(){
   try{
     const bruto=JSON.parse(localStorage.getItem(PAD_KEY)||"null");
-    return padNormalizarRegistros(bruto && bruto.versao===1 ? bruto.registros : []);
+    if(bruto && (bruto.versao===1 || bruto.versao===2)){
+      if(bruto.versao===2)padAplicarQuantidades(bruto.thQuantidades);
+      return padNormalizarRegistros(Array.isArray(bruto.registros)?bruto.registros:[]);
+    }
+    return padroesBase();
   }catch(err){return padroesBase()}
 }
 let PADROES=padCarregar();
@@ -3757,7 +3991,35 @@ let padStatusAtivo="";
 let padBuscaValor="";
 let padIdDetalhe="";
 function padGuardar(){
-  localStorage.setItem(PAD_KEY,JSON.stringify({versao:1,registros:PADROES}));
+  localStorage.setItem(PAD_KEY,JSON.stringify({versao:2,thQuantidades:padQuantidadesAtuais(),registros:PADROES}));
+}
+function padRegistroPossuiDados(r){
+  if(!r)return false;
+  return !!(r.instalado || (r.status&&r.status!=="Não informado") || r.dataInstalacao || r.localizacao || r.responsavel || r.protocolo || r.dataAbertura || (r.resultadoAnalise&&r.resultadoAnalise!=="Não informado") || r.parecer || r.previsaoEnergizacao || r.medidor || r.dataEnergizacao || r.pendencia || r.observacao);
+}
+function padAtualizarPrevisto(thKey,valor){
+  if(!editPermiteAlteracao())return;
+  const th=PAD_THS.find(x=>x.key===thKey);
+  if(!th)return;
+  let nova=Math.round(Number(valor));
+  if(!Number.isFinite(nova))nova=th.qtd;
+  nova=Math.max(0,Math.min(999,nova));
+  const atual=Math.max(0,Math.round(+th.qtd||0));
+  if(nova===atual){padRenderResumo();editAplicarBloqueio();return;}
+  if(nova<atual){
+    const excedentes=PADROES.filter(r=>r.thKey===thKey).slice().sort((a,b)=>a.id.localeCompare(b.id)).slice(nova);
+    const preenchidos=excedentes.filter(padRegistroPossuiDados);
+    if(preenchidos.length){
+      alert(`Não é possível reduzir ${th.th} para ${nova} padrão(ões), pois ${preenchidos.length} registro(s) que seriam removidos possuem dados preenchidos. Limpe esses registros primeiro ou mantenha um quantitativo maior.`);
+      padRenderResumo();editAplicarBloqueio();return;
+    }
+  }
+  th.qtd=nova;
+  PADROES=padNormalizarRegistros(PADROES);
+  if(padIdDetalhe && !PADROES.some(r=>r.id===padIdDetalhe))padIdDetalhe="";
+  padGuardar();
+  padRenderTudo();
+  editAplicarBloqueio();
 }
 function padFiltrados(){
   const busca=padBuscaValor.toLocaleLowerCase("pt-BR").trim();
@@ -3837,8 +4099,8 @@ function padRenderResumo(){
     const itens=PADROES.filter(r=>r.thKey===th.key),instalados=inst(itens),energizados=ene(itens);
     const dist=[...new Set(itens.map(x=>x.distribuidora))].join(" / ");
     return `<tr class="${th.key===padThAtivo?"padTHAtivo":""}"><td><b>Ano ${th.ano}</b></td><td><b>${escHtml(th.th)}</b><br>${escHtml(th.municipio)}</td>
-      <td>${escHtml(dist)}</td><td class="num">${fmt(itens.length)}</td><td class="num">${fmt(instalados)}</td><td class="num">${fmt(energizados)}</td>
-      <td class="num">${fmt(itens.length-energizados)}</td><td><button type="button" class="padButton ${th.key===padThAtivo?"padSelected":""}" data-pad-th="${th.key}">${th.key===padThAtivo?"Em consulta":"Gerenciar"}</button></td></tr>`;
+      <td>${escHtml(dist)}</td><td class="num"><input class="padPrevistoInput" type="number" min="0" max="999" step="1" value="${fmt(itens.length).replace(/\./g,"")}" data-pad-previsto="${th.key}" aria-label="Quantidade prevista ${escHtml(th.th)}"></td><td class="num">${fmt(instalados)}</td><td class="num">${fmt(energizados)}</td>
+      <td class="num">${fmt(Math.max(0,itens.length-energizados))}</td><td><button type="button" class="padButton ${th.key===padThAtivo?"padSelected":""}" data-pad-th="${th.key}">${th.key===padThAtivo?"Em consulta":"Gerenciar"}</button></td></tr>`;
   }).join("");
 }
 function padRenderTabela(){
@@ -3910,6 +4172,7 @@ function padInit(){
   });
   $("viewPadroes").addEventListener("change",ev=>{
     const el=ev.target;
+    if(el.dataset.padPrevisto){padAtualizarPrevisto(el.dataset.padPrevisto,el.value);return;}
     if(!el.dataset.padId || !el.dataset.padField)return;
     padSalvarCampo(el.dataset.padId,el.dataset.padField,el.type==="checkbox"?el.checked:el.value,el.type==="checkbox" || el.tagName==="SELECT");
   });
@@ -3925,7 +4188,7 @@ function exportBackup(){
     dataApontamento:localStorage.getItem("dataApontamento")||"",
     postesDia:localStorage.getItem("postesDia")||"0",
     historicoPostes:HIST,
-    padroesEnergia:{versao:1,registros:PADROES},
+    padroesEnergia:{versao:2,thQuantidades:padQuantidadesAtuais(),registros:PADROES},
     criterioKm:localStorage.getItem("criterioKmLinear")||"considerar",
     distanciaConvencionalM:localStorage.getItem("distanciaPosteConvencionalM")||"50",
     distanciaSolarM:localStorage.getItem("distanciaPosteSolarM")||"40"
@@ -3951,7 +4214,7 @@ function importBackup(file){
     try{
       const b=JSON.parse(reader.result);
       if(!Array.isArray(b.frentes) || !Array.isArray(b.progresso)) throw new Error("Estrutura inválida");
-      if(b.padroesEnergia!==undefined && (!b.padroesEnergia || b.padroesEnergia.versao!==1 || !Array.isArray(b.padroesEnergia.registros))) throw new Error("Estrutura de padrões inválida");
+      if(b.padroesEnergia!==undefined && (!b.padroesEnergia || ![1,2].includes(b.padroesEnergia.versao) || !Array.isArray(b.padroesEnergia.registros))) throw new Error("Estrutura de padrões inválida");
       F=b.frentes.map(migrarLinha);
       P=b.progresso;
       localStorage.setItem(KEY_F,JSON.stringify(F));
@@ -3964,6 +4227,8 @@ function importBackup(file){
       enriquecerHistoricoRecuperado();
       habilitarHistoricoLuminarias();
       if(b.padroesEnergia!==undefined){
+        padRestaurarQuantidadesDefault();
+        if(b.padroesEnergia.versao===2)padAplicarQuantidades(b.padroesEnergia.thQuantidades);
         PADROES=padNormalizarRegistros(b.padroesEnergia.registros);
         padGuardar();
         padRenderTudo();
@@ -3997,6 +4262,7 @@ function resetAll(){
     HIST=criarHistoricoPostes(F,"2026-09-23",0);
     enriquecerHistoricoRecuperado();
     habilitarHistoricoLuminarias();
+    padRestaurarQuantidadesDefault();
     PADROES=padroesBase();
     padGuardar();
     padRenderTudo();
